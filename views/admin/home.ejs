@@ -87,13 +87,13 @@
     <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
       <div class="container py-lg-5 py-md-5 py-sm-4 py-3 ">
         <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">GYM Equipments</h3>
-        <a href="/admin/equipment" class="btn fa fa-plus"></a>
+        
         <div class="flexslider">
           <%equipment.forEach(el => {%>
           <ul class="slides">
             <li >
               <div class="row client-slider-slide" style="justify-content: center;">
-                <div class="col-lg-6 col-md-6 w3layouts-txt-says">
+                <div class="col-lg-6 col-md-4 w3layouts-txt-says">
                   <div class="clients-color-agile text-center">
                     <div class="card" style="width: 18rem;">
                       <img class="card-img-top" src="/<%=el.photo %>" alt="Card image cap">
@@ -102,6 +102,7 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="/admin/removeequipment/<%=el._id%>" class="btn fa fa-trash"></a>
                         <a href="/admin/editequipment/<%=el._id%>" class="btn fa fa-edit"></a>
+                        <a href="/admin/equipment" class="btn fa fa-plus"></a>
                       </div>
                     </div>
                   </div>
@@ -117,8 +118,8 @@
     <!-- team -->
     <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team">
       <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-        <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Clients</h3>
-        <div class="row text-center ">
+        <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3 mt-2">Our Clients</h3>
+        <div class="row text-center" style="justify-content: center;">
             <%userdata.forEach(el=>{%>
           <div class="col-lg-3 col-md-6 col-sm-6 news-img"  data-aos="fade-up"
             data-aos-duration="3000">
@@ -146,6 +147,26 @@
       </div>
     </section>
     <!-- //gallery -->
+      <!-- About-one -->
+  <section class="about " id="about">
+    <div class="container">
+      <div class="row effcet-about">
+        <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
+          <h2 class="mb-lg-5 mb-lg-4 mb-3">Fitness And Health</h2>
+          <div class="agile-about-para">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+          </div>
+          <div class="mt-lg-3 mt-2 agile-about-para">
+            <p>incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+          </div>
+        </div>
+        <div class="col-lg-5 about-States-list" data-aos="fade-left">
+          <img src="/images/ab1.png" alt="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- //About-one -->
     <div class="address_mail_footer_grids" data-aos="fade-up">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555"></iframe>
     </div>

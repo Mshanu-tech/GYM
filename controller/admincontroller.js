@@ -29,7 +29,7 @@ module.exports = {
             username: req.body.username
         })
         await admin.save().then(admin => {
-            res.redirect('/login')
+            res.redirect('/admin')
             console.log(admin);
         })
     },
@@ -41,6 +41,7 @@ module.exports = {
                 console.log(user);
                 let data = await bcrypt.compare(req.body.password, user.password)
                 if (data) {
+                    req.session.user=data
                     res.redirect("/admin/home")
                 }
             } else {
@@ -88,10 +89,11 @@ module.exports = {
             res.redirect("/admin/home")
         })
     },
-    workout: (req, res) => {
-        var time = workout.find()
-        console.log(time);
-        res.render("admin/workout", { time })
+    workout:async (req, res) => {
+            let id = ('64154ecccc7e4791e22e3cec')
+          await workout.findById(id).then(time=>{
+                res.render("admin/workout",{time})
+            })
     },
     workoutedit: (req, res) => {
         let id = ('64154ecccc7e4791e22e3cec')
@@ -99,7 +101,8 @@ module.exports = {
     },
     postworkout: (req, res) => {
         let id = ('64154ecccc7e4791e22e3cec')
-        workouts.findByIdAndUpdate(id, {
+        workout.findByIdAndUpdate(id, {
+            date:req.body.date,
             powerlifting: req.body.powerlifting,
             bodybuilding: req.body.bodybuilding,
             cardioprogram: req.body.cardioprogram,
@@ -120,9 +123,14 @@ module.exports = {
         res.redirect("/admin/home")
     },
     adminhome: async (req, res) => { 
-        var userdata = await userschema.find()
+        if(req.session.user){
+            var userdata = await userschema.find()
         var equipment = await equipmentschema.find()
         res.render('admin/home', { userdata, equipment })
+        }else{
+            res.redirect("/admin")
+        }
+        
     },
     logout: (req, res) => {
         req.session.destroy((err) => {

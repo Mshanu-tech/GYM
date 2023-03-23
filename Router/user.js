@@ -14,6 +14,7 @@ const {
      home,
      getupdate,
      postupdate,
+     payment
 }=require("../controller/usercontroller")
 
 
@@ -28,4 +29,6 @@ router.get("/workout",getworkout)
 router.get("/home",home)
 router.get("/update/:id",getupdate)
 router.post("/update/:id",postupdate)
+router.post("/payment",payment)
+
 module.exports=router

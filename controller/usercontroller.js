@@ -5,6 +5,7 @@ const { workout } = require("../Model/workout")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
 const { render } = require("ejs")
+const Razorpay = require("razorpay")
 
 module.exports = {
     getindex: (req, res) => {
@@ -25,7 +26,7 @@ module.exports = {
             username: req.body.username
         })
         await usermodel.save().then(user => {
-            res.redirect("/login")
+            res.render("user/payment")
             console.log(user);
         })
     },
@@ -40,14 +41,18 @@ module.exports = {
                 console.log(user);
                 let data = await bcrypt.compare(req.body.password, user.password)
                 if (data) {
-                    res.redirect('/home')
+                    req.session.user=data
+                //     var equipment = await equipmentschema.find()
+                //  var admindata = await admins.find()
+                   res.redirect("/home")
+                    
                 }
             } else {
-                res.render('user/login')
+                res.redirect('/login')
             }
         }
         catch {
-            res.render('user/login')
+            res.redirect('/user/login')
         }
     },
 
@@ -83,15 +88,37 @@ module.exports = {
     getworkout:(req, res) => {
         let id=('64154ecccc7e4791e22e3cec')
         workout.findById(id).then(time=>{
-            console.log(time);
             res.render("user/workout",{time})
         })
     },
+ 
+    payment:async (req,res)=>{
+        let {amount} = req.body
+        var instance = new Razorpay({ key_id: 'rzp_test_obFeIuhvv6VqPb', key_secret: 'XgVJjFXSsmNwCdnMOMK2bZPV' })
 
+const order = await instance.orders.create({
+  amount: amount * 100,
+  currency: "INR",
+  receipt: "receipt#1",
+})
+res.status(201).json({
+    success:true,
+    order,
+    amount
+})
+
+    },
+ 
+    
     home: async (req, res) => {
-        var equipment = await equipmentschema.find()
+        if(req.session.user){
+            var equipment = await equipmentschema.find()
          var admindata = await admins.find()
         res.render("user/home", { equipment , admindata})
+        }else{
+            res.redirect("/login")
+        }
+        
     },
     logout: (req, res) => {
         req.session.destroy((err) => {

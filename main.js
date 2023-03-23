@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express")
 const layoutexpress = require("express-ejs-layouts")
 const mongoose = require("mongoose");
+const cors = require("cors")
 const app = express();
 const session = require("express-session")
 const multer = require('multer');
@@ -9,10 +11,11 @@ const auth = require("./middleware/auth")
 
 //Database connection
 mongoose.set('strictQuery', true)
-mongoose.connect('mongodb://127.0.0.1:27017/GYM', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //middleware
 app.use(express.json());
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
   secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -61,4 +64,6 @@ app.set('layout', 'layouts/layout')
 app.use("/", require("./Router/user"))
 app.use("/admin", require("./Router/admin"))
 
-app.listen(5000, () => { console.log("server started 5000"); })
+const port = process.env.PORT || 4000
+
+app.listen(port, () => { console.log(`server started ${port}`)})

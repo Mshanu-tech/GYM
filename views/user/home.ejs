@@ -2,8 +2,9 @@
   <div class="container-fluid">
     <!--//navigation section -->
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="hedder-up " >
-        <h1><a class="navbar-brand" href="index.html" data-aos="fade-right">Gym-Plus</a></h1>
+      <div class="hedder-up">
+        <h2><a class="navbar-brand" href="index.html" data-aos="fade-right" ><a href="/user/profile" class="fas fa-user fa-lg me-3 fa-fw"></a> Gym-Plus</a></h2>
+
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,16 +15,15 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="nav-link scroll">About</a>
-          </li>
-          <li class="nav-item">
             <a href="workout" class="nav-link">workout</a>
           </li>
           <li class="nav-item">
-            <a href="#contact" class="nav-link scroll">Contact</a>
+            <a href="#service" class="nav-link scroll">service</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link scroll">About</a>
           </li>
         </ul>
-  
          <a class="btn btn-primary" href="/logout">Logout</a>
       </div>
     </nav>
@@ -84,7 +84,7 @@
   </div>
   <!-- //banner -->
   <!-- About-one -->
-  <!-- <section class="about " id="about">
+  <section class="about " id="about">
     <div class="container">
       <div class="row effcet-about">
         <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
@@ -101,10 +101,10 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <!-- //About-one -->
   <!--service-->	
-  <!-- <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
+  <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
     <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
       <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Services</h3>
       <div class="row top-service pb-lg-4 pb-md-3 pb-2">
@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <!--//service-->
   <!--clients-->
   <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
@@ -175,8 +175,6 @@
                     <div class="card-body">
                       <h5 class="card-title"><%=el.name %></h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="/admin/removeequipment/<%=el._id%>" class="btn fa fa-trash"></a>
-                      <a href="/admin/editequipment/<%=el._id%>" class="btn fa fa-edit"></a>
                     </div>
                   </div>
                 </div>
@@ -193,7 +191,7 @@
   <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team">
     <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
       <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Traines</h3>
-      <div class="row text-center ">
+      <div class="row text-center "style="justify-content: center;">
         
         <div class="col-lg-3 col-md-6 col-sm-6 news-img" data-aos="fade-up"
           data-aos-duration="3000">

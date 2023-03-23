@@ -111,7 +111,7 @@ background: #f65a5b;
 /*-- nav --*/
 .header-outs {
 position: relative;
-background: url(../images/b1.jpg) no-repeat 0px 0px;
+background: url('../images/main.jpg') no-repeat 0px 0px;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
