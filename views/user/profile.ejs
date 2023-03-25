@@ -6,11 +6,10 @@
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-         
+              <img src="/<%=user.photo %>" style="width: 140px; margin-top: 30px; border-radius: 50%;" alt="">
               <h5><%=user.name%></h5>
               <p></p>
               <a href="/update/<%=user._id%>" class="far fa-edit mb-5"></a>
-              <a href="/home">cddsd</a>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
@@ -20,6 +19,10 @@
                   <div class="col-6 mb-3">
                     <h6>Name</h6>
                     <p class="text-muted"><%=user.name%></p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>username</h6>
+                    <p class="text-muted"><%=user.username%></p>
                   </div>
                   <div class="col-6 mb-3">
                     <h6>Phone</h6>

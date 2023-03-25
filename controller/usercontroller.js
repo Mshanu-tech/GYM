@@ -42,17 +42,16 @@ module.exports = {
                 let data = await bcrypt.compare(req.body.password, user.password)
                 if (data) {
                     req.session.user=data
-                //     var equipment = await equipmentschema.find()
-                //  var admindata = await admins.find()
-                   res.redirect("/home")
-                    
+               var equipment = await equipmentschema.find()
+              var admindata = await admins.find()
+                   res.render("user/home",{equipment,admindata ,user})    
                 }
             } else {
                 res.redirect('/login')
             }
         }
         catch {
-            res.redirect('/user/login')
+            res.redirect('/login')
         }
     },
 
@@ -74,18 +73,19 @@ module.exports = {
     postupdate: (req, res) => {
         let userid = req.params.id
         userschema.findByIdAndUpdate(userid, {
-            // photo:req.file.filename,
+            photo:req.file.filename,
             name: req.body.name,
             email: req.body.email,
             number: req.body.number,
-            weight: req.body.weight
+            weight: req.body.weight,
+            username: req.body.username
         }).then(user => {
             console.log(user)
-            res.render("user/profile", { user })
+            res.redirect("/home")
         })
     },
 
-    getworkout:(req, res) => {
+    getworkout:(req, res ,next) => {
         let id=('64154ecccc7e4791e22e3cec')
         workout.findById(id).then(time=>{
             res.render("user/workout",{time})
@@ -94,21 +94,20 @@ module.exports = {
  
     payment:async (req,res)=>{
         let {amount} = req.body
-        var instance = new Razorpay({ key_id: 'rzp_test_obFeIuhvv6VqPb', key_secret: 'XgVJjFXSsmNwCdnMOMK2bZPV' })
-
-const order = await instance.orders.create({
-  amount: amount * 100,
-  currency: "INR",
-  receipt: "receipt#1",
-})
-res.status(201).json({
-    success:true,
-    order,
-    amount
-})
-
-    },
- 
+        var instance = new Razorpay({ key_id: process.env.RAZORPAY_API_KEY, key_secret: process.env.RAZORPAY_API_SECRET })
+        var order = await instance.orders.create({
+        amount: amount * 100,
+        currency: "INR",
+        receipt: "receipt#1",
+        })
+        res.status(201).json({
+        success:true,
+        order,
+        amount
+        }) 
+        console.log(amount);
+        },
+        
     
     home: async (req, res) => {
         if(req.session.user){

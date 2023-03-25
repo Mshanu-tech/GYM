@@ -9,8 +9,6 @@ const userschema = new mongoose.Schema({
     },
     username:{
         type:String,
-        // unique: true,
-        required:true
     },
     number: {
         type: Number

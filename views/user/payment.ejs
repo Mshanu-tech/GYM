@@ -185,6 +185,8 @@ document.getElementById('1year').onclick = async function(e){
     "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
     "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
+    "name": "ACK", //your business name
+    "description": "Test Transaction",
     "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
         alert(response.razorpay_payment_id)
@@ -219,6 +221,8 @@ document.getElementById('6month').onclick = async function(e){
     "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
     "amount": "500000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
+    "name": "ACK", //your business name
+    "description": "Test Transaction",
     "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
         alert(response.razorpay_payment_id)
@@ -236,11 +240,10 @@ var rzp1 = new Razorpay(options);
 document.getElementById('3month').onclick = async function(e){
   e.preventDefault();
 
-
   let response = await fetch("/payment",{
     method:"POST",
     headers:{
-      "Content-Type":"application/json",
+      "Content-Type":"application/json",        
     },
     body: JSON.stringify({
       amount:500,    
@@ -248,12 +251,14 @@ document.getElementById('3month').onclick = async function(e){
   })
 
   let orderdata = await response.json();
-  console.log(orderdata);
+ // console.log(orderdata);
 
   var options = {
     "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
     "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
+    "name": "ACK", //your business name
+    "description": "Test Transaction",
     "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
         alert(response.razorpay_payment_id)
