@@ -158,21 +158,21 @@
   </section>
   <!--//service-->
   <!--clients-->
-  <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
+  <!-- <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
     <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
       <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">GYM Equipments</h3>
-      <% console.log(equipment)%>
+      <%# console.log(equipment)%>
       <div class="flexslider">
-        <%equipment.forEach(el => {%>
+        <%#equipment.forEach(el => {%>
         <ul class="slides">
           <li >
             <div class="row client-slider-slide" style="justify-content: center;">
               <div class="col-lg-6 col-md-6 w3layouts-txt-says">
                 <div class="clients-color-agile text-center">
                   <div class="card" style="width: 18rem; margin-left: 30px;">
-                    <img class="card-img-top" src="/<%=el.photo %>" alt="Card image cap">
+                    <img class="card-img-top" src="/<%#=el.photo %>" alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title"><%=el.name %></h5>
+                      <h5 class="card-title"><%#=el.name %></h5>
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                   </div>
@@ -181,11 +181,22 @@
             </div>
           </li>
         </ul>
-        <%})%>
+        <%#})%>
+      </div>
+    </div>
+  </section> -->
+  <!--//clients-->
+  <section class="container">
+    <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">GYM Equipments</h3>
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </section>
-  <!--//clients-->
   <!-- team -->
   <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team">
     <div class="container py-lg-5 py-md-4 py-sm-4 py-3">

@@ -1,0 +1,14 @@
+<table>
+    <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Attendance Status</th>
+  </tr>
+  <%details.forEach(el => { %>
+  <tr><tr><td><%=el.date %></td></tr>
+    
+      <td><%=el.name%></td>
+      <td><%=el.status %></td>
+  </tr>
+  <% }); %>
+  </table>

@@ -7,6 +7,7 @@ const app = express();
 const session = require("express-session")
 const multer = require('multer');
 const path = require("path")
+const bodyparse = require("body-parser")
 const auth = require("./middleware/auth")
 
 //Database connection
@@ -15,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
 
 //middleware
 app.use(express.json());
+app.use(bodyparse.json())
 app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(session({

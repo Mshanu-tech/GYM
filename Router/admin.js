@@ -15,7 +15,10 @@ const {
    postworkout,
    removeequipment,
    editequipment,
-   posteditequipment
+   posteditequipment,
+   attendance,
+   postattendance,
+   attendancedetails
 }=require("../controller/admincontroller")
 
 //Routing
@@ -35,5 +38,8 @@ router.post("/postworkout",postworkout)
 router.get("/removeequipment/:id",removeequipment)
 router.get("/editequipment/:id",editequipment)
 router.post("/editequipment/:id",posteditequipment)
+router.get("/attendance",attendance)
+router.post("/attendance",postattendance)
+router.get("/attendancedetails",attendancedetails)
 
 module.exports=router

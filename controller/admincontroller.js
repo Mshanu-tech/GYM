@@ -2,20 +2,21 @@ const { admins } = require("../Model/adminmodel")
 const userschema = require("../Model/usermodel")
 const equipment = require("../Model/equipment")
 const { workout } = require("../Model/workout")
+const attendance = require("../Model/attendances")
 const multer = require("multer")
 const bcrypt = require("bcrypt")
 const equipmentschema = require("../Model/equipment")
+const attendances = require("../Model/attendances")
 module.exports = {
     getlogin: (req, res) => {
-        if(req.session.admin)
-        {
+        if (req.session.admin) {
             redirect('/admin/home')
         }
-        else{
+        else {
             res.render("admin/login")
 
         }
-        
+
     },
     getsignup: (req, res) => {
         res.render("admin/adminsignup")
@@ -26,7 +27,7 @@ module.exports = {
             email: req.body.email,
             number: req.body.number,
             password: req.body.password,
-            username: req.body.username
+            username: req.body.usernam
         })
         await admin.save().then(admin => {
             res.redirect('/admin')
@@ -41,7 +42,7 @@ module.exports = {
                 console.log(user);
                 let data = await bcrypt.compare(req.body.password, user.password)
                 if (data) {
-                    req.session.user=data
+                    req.session.user = data
                     res.redirect("/admin/home")
                 }
             } else {
@@ -74,26 +75,26 @@ module.exports = {
     },
     editequipment: (req, res) => {
         const id = req.params.id
-        equipmentschema.findById(id).then(equip=>{
-            res.render("admin/equipment",{equip})
+        equipmentschema.findById(id).then(equip => {
+            res.render("admin/equipment", { equip })
         })
-       
+
     },
-    posteditequipment: async (req,res)=>{
-        let id=req.params.id
-        equipmentschema.findByIdAndUpdate(id,{
+    posteditequipment: async (req, res) => {
+        let id = req.params.id
+        equipmentschema.findByIdAndUpdate(id, {
             name: req.body.name,
             photo: req.file.filename
-        }).then(updateequip=>{
+        }).then(updateequip => {
             console.log(updateequip);
             res.redirect("/admin/home")
         })
     },
-    workout:async (req, res) => {
-            let id = ('64154ecccc7e4791e22e3cec')
-          await workout.findById(id).then(time=>{
-                res.render("admin/workout",{time})
-            })
+    workout: async (req, res) => {
+        let id = ('64154ecccc7e4791e22e3cec')
+        await workout.findById(id).then(time => {
+            res.render("admin/workout", { time })
+        })
     },
     workoutedit: (req, res) => {
         let id = ('64154ecccc7e4791e22e3cec')
@@ -102,7 +103,7 @@ module.exports = {
     postworkout: (req, res) => {
         let id = ('64154ecccc7e4791e22e3cec')
         workout.findByIdAndUpdate(id, {
-            date:req.body.date,
+            date: req.body.date,
             powerlifting: req.body.powerlifting,
             bodybuilding: req.body.bodybuilding,
             cardioprogram: req.body.cardioprogram,
@@ -122,16 +123,40 @@ module.exports = {
         console.log(del, "deleted");
         res.redirect("/admin/home")
     },
-    adminhome: async (req, res) => { 
-        if(req.session.user){
+    adminhome: async (req, res) => {
+        if (req.session.user) {
             var userdata = await userschema.find()
-        var equipment = await equipmentschema.find()
-        res.render('admin/home', { userdata, equipment })
-        }else{
+            var equipment = await equipmentschema.find()
+            const totaluser = await userdata.length
+            const totalequipment = await equipmentschema.length
+            console.log(totaluser);
+            res.render('admin/home', { userdata, equipment, totaluser, totalequipment })
+        } else {
             res.redirect("/admin")
         }
-        
+
     },
+    attendance: async (req, res) => {
+        const user = await userschema.find()
+        res.render('admin/attendances', { user })
+    },
+    postattendance: async (req, res) => {
+        const attendance = new attendances({
+            date: req.body.date,
+            name: req.body.name,
+            status: req.body.status
+        })
+        await attendance.save().then(atten => {
+            console.log(atten);
+            res.redirect("/admin/home")
+        })
+    },
+
+    attendancedetails: async (req, res) => {
+        const details = await attendance.find()
+        res.render("admin/attendancedetails", { details })
+    },
+
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) {

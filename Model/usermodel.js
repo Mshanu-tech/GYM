@@ -21,7 +21,19 @@ const userschema = new mongoose.Schema({
     },
     weight:{
         type:String
-    }
+    },
+    payment:{
+        type:Number
+    },
+    payment1:{
+        type:Number
+    },
+    payment:{
+        type:Number
+    },
+    date:{
+        type:Date
+    } 
 })
 
 userschema.pre('save', async function (next) {

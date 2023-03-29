@@ -161,7 +161,7 @@
 </section>
 <!-- razorpay -->
 <!-- 1 year -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
   ////////////////////////////////////////////////  1  year  //////////////////////////////////////////////////////
 document.getElementById('1year').onclick = async function(e){
@@ -240,18 +240,19 @@ var rzp1 = new Razorpay(options);
 document.getElementById('3month').onclick = async function(e){
   e.preventDefault();
 
-  let response = await fetch("/payment",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",        
-    },
-    body: JSON.stringify({
-      amount:500,    
-    })
-  })
+  // let response = await fetch("/payment",{
+  //   method:"POST",
+  //   headers:{
+  //     "Content-Type":"application/json",        
+  //   },
+  //   body: JSON.stringify({
+  //     amount:500,    
+  //   })
+  // })
 
   let orderdata = await response.json();
- // console.log(orderdata);
+  console.log(orderdata)
+ 
 
   var options = {
     "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
@@ -267,8 +268,16 @@ document.getElementById('3month').onclick = async function(e){
     },
 };
 var rzp1 = new Razorpay(options);
-    rzp1.open();
+    rzp1.open()
+    verifypayment()
 }
+function verifypayment(){
+  $.ajax({
+    url:'/verifypayment',
+    method:'post'
+  })
+}
+
 
 </script>
 <!-- razorpay -->

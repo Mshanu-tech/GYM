@@ -1,256 +1,391 @@
-<div class="header-w3layouts">
-    <div class="container-fluid">
-      <!--//navigation section -->
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="hedder-up " >
-          <h1><a class="navbar-brand" href="index.html" data-aos="fade-right">Gym-Plus</a></h1>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#about" class="nav-link scroll">About</a>
-            </li>
-            <li class="nav-item">
-              <a href="/admin/workout" class="nav-link">workout</a>
-            </li>
-            <li class="nav-item">
-              <a href="#contact" class="nav-link scroll">Contact</a>
-            </li>
-          </ul>
-    
-           <a class="btn btn-primary" href="/logout">Logout</a>
-        </div>
-      </nav>
-      <!--//navigation section -->
-      <div class="clearfix"> </div>
-    </div>
-  </div>
-<body>
-    <div class="header-outs" id="header">
-      <!--banner -->
-      <div class="container">
-        <div class="banner-slide-img" data-aos="fade-up">
-          <!-- Slideshow 4 -->
-          <div class="slider">
-            <div class="callbacks_container">
-              <ul class="rslides" id="slider4">
-                <li>
-                  <div class="slider-img">
-                    <div class="slider-info ">
-                      <h4></h4>
-                      <h5> Grow Your Strength</h5>
-                      <div class="mt-3 outs_more-buttn">
-                        <a href="#" data-toggle="modal" data-target="#exampleModalLive"></a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="slider-img">
-                    <div class="slider-info ">
-                      <h4>Fitness And Stronger </h4>
-                      <h5>Real Athletes</h5>
-                      <div class="mt-3 outs_more-buttn">
-                        <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="slider-img">
-                    <div class="slider-info">
-                      <h4>Fitness And Health</h4>
-                      <h5>With Double Power</h5>
-                      <div class="mt-3 outs_more-buttn">
-                        <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-            <!-- This is here just to demonstrate the callbacks -->
-          </div>
-          <!-- //Slideshow 4 -->
-          <div class="clearfix"></div>
         </div>
-      </div>
-    </div>
-    <!-- //banner -->
-    <!--clients-->
-    <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
-      <div class="container py-lg-5 py-md-5 py-sm-4 py-3 ">
-        <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">GYM Equipments</h3>
-        
-        <div class="flexslider">
-          <%equipment.forEach(el => {%>
-          <ul class="slides">
-            <li >
-              <div class="row client-slider-slide" style="justify-content: center;">
-                <div class="col-lg-6 col-md-4 w3layouts-txt-says">
-                  <div class="clients-color-agile text-center">
-                    <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="/<%=el.photo %>" alt="Card image cap">
-                      <div class="card-body">
-                        <h5 class="card-title"><%=el.name %></h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="/admin/removeequipment/<%=el._id%>" class="btn fa fa-trash"></a>
-                        <a href="/admin/editequipment/<%=el._id%>" class="btn fa fa-edit"></a>
-                        <a href="/admin/equipment" class="btn fa fa-plus"></a>
-                      </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>GYM</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
-                  </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Jhon Doe</h6>
+                        <span>Admin</span>
+                    </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-          <%})%>
+               <div class="navbar-nav w-100">
+                    <a href="index.ejs" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/admin/workout" class="nav-idtem nav-link active"><i class="fa fa-tachometer-alt me-2"></i>workout</a>
+                    <a href="/admin/attendancedetails" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>attendance</a>
+                    <a href="/admin/attendance" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>attendance</a>
+
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="button.html" class="dropdown-item">Buttons</a>
+                            <a href="typography.html" class="dropdown-item">Typography</a>
+                            <a href="element.html" class="dropdown-item">Other Elements</a>
+                        </div>
+                    </div> -->
+                    <!-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a> -->
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="signin.html" class="dropdown-item">Sign In</a>
+                            <a href="signup.html" class="dropdown-item">Sign Up</a>
+                            <a href="404.html" class="dropdown-item">404 Error</a>
+                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                        </div>
+                    </div> -->
+                </div>
+            </nav>
         </div>
-      </div>
-    </section>
-    <!--//clients-->
-    <!-- team -->
-    <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team">
-      <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-        <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3 mt-2">Our Clients</h3>
-        <div class="row text-center" style="justify-content: center;">
-            <%userdata.forEach(el=>{%>
-          <div class="col-lg-3 col-md-6 col-sm-6 news-img"  data-aos="fade-up"
-            data-aos-duration="3000">
-            <div class="team-agile-group">
-              <img src="/images/t1.jpg" alt="" class="image-fluid">
-              <h4 class="mt-3 mb-2">Name:<%=el.name%>
-              </h4>
-              <span class="wls-client-title">Email:<%=el.email %> </span>
-              <h5> phone:<%=el.number %></h5>
-              <p class="mt-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-                Lorem ipsum 
-              </p>
-              <div class="icons-footer mt-lg-4 mt-md-3 mt-3">
-                <ul>
-                  <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                  <li><a href="/admin/delete/<%=el._id%>"><span class="fa fa-trash"></span></a></li>
-                  <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                </ul>
-              </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <!-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Message</span>
+                        </a> -->
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all message</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <!-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a> -->
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Today Sale</p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Users</p>
+                                <h6 class="mb-0"><%=totaluser%></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Today Revenue</p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total </p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <% }) %>
-          
+            <!-- Sale & Revenue End -->
+
+
+            <!-- Sales Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Worldwide Sales</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="worldwide-sales"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Salse & Revenue</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="salse-revenue"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales Chart End -->
+
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">user details</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <!-- <th scope="col"><input class="form-check-input" type="checkbox"></th> -->
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Invoice</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%userdata.forEach(el => {%>
+                                <tr>
+                                    <!-- <td><input class="form-check-input" type="checkbox"></td> -->
+                                    <td><%=el.date %></td>
+                                    <td>INV-0123</td>
+                                    <td><%=el.name %></td>
+                                    <td><%=el.payment %></td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <% }) %>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+            <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">Messages</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">Jhon Doe</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">Jhon Doe</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-3">
+                                <img class="rounded-circle flex-shrink-0" src="/images/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">Jhon Doe</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-3">
+                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">Jhon Doe</h6>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                    <span>Short message goes here...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Calender</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div id="calender"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">To Do List</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
+                                <button type="button" class="btn btn-primary ms-2">Add</button>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox" checked>
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span><del>Short task goes here...</del></span>
+                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>Short task goes here...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
         </div>
-      </div>
-    </section>
-    <!-- //gallery -->
-      <!-- About-one -->
-  <section class="about " id="about">
-    <div class="container">
-      <div class="row effcet-about">
-        <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
-          <h2 class="mb-lg-5 mb-lg-4 mb-3">Fitness And Health</h2>
-          <div class="agile-about-para">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-          </div>
-          <div class="mt-lg-3 mt-2 agile-about-para">
-            <p>incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-          </div>
-        </div>
-        <div class="col-lg-5 about-States-list" data-aos="fade-left">
-          <img src="/images/ab1.png" alt="" class="img-fluid">
-        </div>
-      </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-  </section>
-  <!-- //About-one -->
-    <div class="address_mail_footer_grids" data-aos="fade-up">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555"></iframe>
-    </div>
-    <!--contact -->
-    <Section class="contact py-lg-4 py-md-3 py-sm-3 py-3" id="contact">
-      <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-        <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Contact Us</h3>
-        <div class="mb-lg-5 mb-md-4 mb-3 row contact-right ">
-          <div class="col-lg-4 col-md-5 footer_grid_left text-center" data-aos="fade-right"
-            data-aos-offset="100"
-            data-aos-easing="ease-in-sine">
-            <div class="contact_footer_grid_left text-center mb-3">
-              <span class="fas fa-map-marker-alt"></span>
-            </div>
-            <p> Broome St,10002,Canada<br>New York City 90210.</p>
-          </div>
-          <div class="col-lg-4 col-md-3 footer_grid_left text-center"  data-aos="fade-right"
-            data-aos-offset="110"
-            data-aos-easing="ease-in-sine">
-            <div class="contact_footer_grid_left text-center mb-3">
-              <span class="fas fa-phone-volume"></span>
-            </div>
-            <p>+(000) 123 4565 32<br>+(010) 123 455 354</p>
-          </div>
-          <div class="col-lg-4 col-md-4 footer_grid_left text-center" data-aos="fade-right"
-            data-aos-offset="120"
-            data-aos-easing="ease-in-sine">
-            <div class="contact_footer_grid_left text-center mb-3">
-              <span class="fas fa-at"></span>
-            </div>
-            <p><a href="mailto:info@example.com">info@example1.com</a> 
-              <br><a href="mailto:info@example.com">info@example2.com</a>
-            </p>
-          </div>
-        </div>
-        <div class=" contact-form aos-init aos-animate" data-aos="fade-left"
-          data-aos-offset="100"
-          data-aos-easing="ease-in-sine">
-          <form action="#" method="post">
-            <div class="row text-center contact-wls-detail">
-              <div class="col-md-4 form-group contact-forms">
-                <input type="text" class="form-control" placeholder="Your Name" required="">
-              </div>
-              <div class="col-md-4 form-group contact-forms">
-                <input type="email" class="form-control" placeholder="Your Email" required="">
-              </div>
-              <div class="col-md-4 form-group contact-forms">
-                <input type="text" name="Phone" class="form-control" placeholder="Phone " required="">
-              </div>
-            </div>
-            <div class="form-group contact-forms">
-              <textarea class="form-control" rows="3" placeholder="Your Message" required=""></textarea>
-            </div>
-            <button type="submit" class="btn sent-butnn">Send</button>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!--//contact -->
-    <!-- footer -->
-   
-    <!-- //footer -->
-    <!--model-->
-    <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLiveLabel">Gym-Plus</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <img src="images/b1.jpg" alt="" class="img-fluid">
-            <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-              eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellu
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <!-- <button type="button" class="btn btn-primary"> <a href="login">login</a></button> -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <%- include('../partials/footer.ejs') %>
-    
