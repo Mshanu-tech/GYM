@@ -25,12 +25,12 @@ const userschema = new mongoose.Schema({
     payment:{
         type:Number
     },
-    payment1:{
-        type:Number
-    },
-    payment:{
-        type:Number
-    },
+    // payment1:{
+    //     type:Number
+    // },
+    // payment:{
+    //     type:Number
+    // },
     date:{
         type:Date
     } 

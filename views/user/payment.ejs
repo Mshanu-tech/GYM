@@ -1,4 +1,4 @@
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <style>
 
     .header {
@@ -80,7 +80,7 @@
               <span class="price">$8</span><br>Unlimited equipments
               <br>
               <h2 class="card-title">3 month </h2>
-              <!-- <small>Individual</small> -->
+     
             </div>
             <div class="flip-card-back">
              <ul class="list-group list-group-flush">
@@ -108,7 +108,7 @@
             <span class="price">$20</span><br>Unlimited equipments
             <br>
             <h2 class="card-title">9 month </h2>
-            <!-- <small>Small Business</small> -->
+      
           </div>
           <div class="flip-card-back">
            <ul class="list-group list-group-flush">
@@ -137,7 +137,7 @@
           <span class="price">$40</span><br>Unlimited equipments
           <br>
           <h2 class="card-title">1 year </h2>
-          <!-- <small>Large Company</small> -->
+      
         </div>
         <div class="flip-card-back">
          <ul class="list-group list-group-flush">
@@ -158,13 +158,46 @@
 </div>
 </div>    
 </div>
-</section>
-<!-- razorpay -->
-<!-- 1 year -->
+</section> -->
 
+
+
+
+<!-- Inside index.html -->
+
+	<title>Razorpay Web-Integration</title>
+	<hr/>
+	<h2>Advanced Data Structures & Algorithms Course</h2>
+	<h3>Description</h3>
+
+	<ul>
+		<li>Best Course for SDE placements</li>
+		<li>
+			Available in 4 major Languages JAVA,
+			C/C++, Python, Javascript
+		</li>
+		<li>Lifetime Access</li>
+	</ul>
+
+	<span> Cost:- 499 Rupees
+		<button id="pay-button" >
+			Pay Now & Get Access
+		</button>
+	</span>
+	<hr/>
+
+	<!-- Processing Payment Checkout -->
+	<!-- We will write code for payment here,
+		Replace this comment with the code we
+		are explaining below in step 5 of the
+		article -->
+
+
+<!--Inside index.html -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-  ////////////////////////////////////////////////  1  year  //////////////////////////////////////////////////////
-document.getElementById('1year').onclick = async function(e){
+
+  document.getElementById('pay-button').onclick = async function(e){
   e.preventDefault();
 
 
@@ -197,90 +230,5 @@ document.getElementById('1year').onclick = async function(e){
 var rzp1 = new Razorpay(options);
     rzp1.open();
 }
-
-///////////////////////////////////////////////////////  6 month  /////////////////////////////////////////////////////
-
-document.getElementById('6month').onclick = async function(e){
-  e.preventDefault();
-
-
-  let response = await fetch("/payment",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-    },
-    body: JSON.stringify({
-      amount:500,    
-    })
-  })
-
-  let orderdata = await response.json();
-  console.log(orderdata);
-
-  var options = {
-    "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-    "amount": "500000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "ACK", //your business name
-    "description": "Test Transaction",
-    "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-    },
-};
-var rzp1 = new Razorpay(options);
-    rzp1.open();
-}
-
-
-////////////////////////////////////////////////////////  3month  /////////////////////////////////////////
-
-document.getElementById('3month').onclick = async function(e){
-  e.preventDefault();
-
-  // let response = await fetch("/payment",{
-  //   method:"POST",
-  //   headers:{
-  //     "Content-Type":"application/json",        
-  //   },
-  //   body: JSON.stringify({
-  //     amount:500,    
-  //   })
-  // })
-
-  let orderdata = await response.json();
-  console.log(orderdata)
- 
-
-  var options = {
-    "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-    "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "ACK", //your business name
-    "description": "Test Transaction",
-    "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-    },
-};
-var rzp1 = new Razorpay(options);
-    rzp1.open()
-    verifypayment()
-}
-function verifypayment(){
-  $.ajax({
-    url:'/verifypayment',
-    method:'post'
-  })
-}
-
 
 </script>
-<!-- razorpay -->
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<!-- //price -->

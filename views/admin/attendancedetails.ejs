@@ -1,14 +1,25 @@
-<table>
+<table style="display: flex;">
+  <tr>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Attendance Status</th>
+  </tr>
     <tr>
-    <th>Date</th>
-    <th>Name</th>
-    <th>Attendance Status</th>
+      <% for (let i=0; i < details.length; i++) { %>
+      <td rowspan="20">
+        <%= details[i].date %>
+      </td>
+    <tr>
+      <% details[i].status.forEach(ele=> { %>
+        <td>
+          <%=ele.name %>
+        </td>
+    <td>
+      <%=ele.isPresent %>
+    </td>
   </tr>
-  <%details.forEach(el => { %>
-  <tr><tr><td><%=el.date %></td></tr>
-    
-      <td><%=el.name%></td>
-      <td><%=el.status %></td>
-  </tr>
-  <% }); %>
-  </table>
+    <% }); %>
+    <% } %>
+      </tr>
+</table>
+

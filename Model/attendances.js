@@ -1,13 +1,11 @@
 const mongoose=require("mongoose")
 const attendanceschema = new mongoose.Schema({
-    name:{
-        type:Array,
-    },
-    status:{
-        type:Array,
-    },
+    status:[{
+        name: String,
+        isPresent: String
+    }],
     date:{
-        type:String,
+        type:String
     }
 })
 

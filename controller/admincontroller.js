@@ -141,15 +141,24 @@ module.exports = {
         res.render('admin/attendances', { user })
     },
     postattendance: async (req, res) => {
+        const obj = req.body
+        console.log(obj);
+        let arr = obj.name.map((element, index) => {
+            return {name: element, isPresent: obj.status[index] === 'present' ? true : false}
+          })
+          
+          
         const attendance = new attendances({
-            date: req.body.date,
-            name: req.body.name,
-            status: req.body.status
+            date:req.body.date,
+            status:arr,
+            // name: req.body.name,
+            // status: {status}
         })
+        console.log(arr)
         await attendance.save().then(atten => {
             console.log(atten);
             res.redirect("/admin/home")
-        })
+        }) 
     },
 
     attendancedetails: async (req, res) => {
