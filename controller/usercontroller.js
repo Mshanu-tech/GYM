@@ -24,11 +24,11 @@ module.exports = {
             password: req.body.password,
             photo: req.file.filename,
             username: req.body.username,
-            payment:req.body.payment,
-            payment1:req.body.payment1,
-            payment2:req.body.payment2,
-            date:req.body.date
+            payment:req.body.payment
+            // date:req.body.date
         })
+        console.log(req.body.payment);
+        console.log(req.body.password);
         await usermodel.save().then(user => {
             res.render("user/login")
             console.log(user);

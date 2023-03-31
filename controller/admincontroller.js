@@ -151,8 +151,6 @@ module.exports = {
         const attendance = new attendances({
             date:req.body.date,
             status:arr,
-            // name: req.body.name,
-            // status: {status}
         })
         console.log(arr)
         await attendance.save().then(atten => {
@@ -164,6 +162,14 @@ module.exports = {
     attendancedetails: async (req, res) => {
         const details = await attendance.find()
         res.render("admin/attendancedetails", { details })
+    },
+
+    userdetails: async (req,res)=>{
+        const id = req.params.id
+        userschema.findById(id).then(userdata => {
+            console.log(userdata);
+            res.render("admin/userdetails", { userdata })
+        })
     },
 
     logout: (req, res) => {

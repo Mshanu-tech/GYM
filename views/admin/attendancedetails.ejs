@@ -1,25 +1,31 @@
-<table style="display: flex;">
-  <tr>
-      <th>Date</th>
-      <th>Name</th>
-      <th>Attendance Status</th>
-  </tr>
-    <tr>
-      <% for (let i=0; i < details.length; i++) { %>
-      <td rowspan="20">
-        <%= details[i].date %>
-      </td>
-    <tr>
-      <% details[i].status.forEach(ele=> { %>
-        <td>
-          <%=ele.name %>
-        </td>
-    <td>
-      <%=ele.isPresent %>
-    </td>
-  </tr>
-    <% }); %>
-    <% } %>
+<div class="table-responsive" style="display: flex;">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Attendance Status</th>
       </tr>
-</table>
+    </thead>
+    <tbody>
+      <% for (let i=0; i < details.length; i++) { %>
+        <tr>
+          <td rowspan="<%= details[i].status.length %>"><%= details[i].date %></td>
+          <% for (let j=0; j < details[i].status.length; j++) { %>
+            <td><%= details[i].status[j].name %></td>
+            <td><%= details[i].status[j].isPresent %></td>
+          </tr>
+          <% if (j < details[i].status.length - 1) { %>
+            <tr>
+          <% } %>
+          <% } %>
+        <% } %>
+    </tbody>
+  </table>
+</div>
 
+<style>
+  body{
+    background-color: rgb(16, 63, 71);
+  }
+</style>

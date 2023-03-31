@@ -23,14 +23,8 @@ const userschema = new mongoose.Schema({
         type:String
     },
     payment:{
-        type:Number
+         type:String
     },
-    // payment1:{
-    //     type:Number
-    // },
-    // payment:{
-    //     type:Number
-    // },
     date:{
         type:Date
     } 

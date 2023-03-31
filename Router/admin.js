@@ -18,7 +18,8 @@ const {
    posteditequipment,
    attendance,
    postattendance,
-   attendancedetails
+   attendancedetails,
+   userdetails
 }=require("../controller/admincontroller")
 
 //Routing
@@ -41,5 +42,6 @@ router.post("/editequipment/:id",posteditequipment)
 router.get("/attendance",attendance)
 router.post("/attendance",postattendance)
 router.get("/attendancedetails",attendancedetails)
+router.get("/userdetails/:id",userdetails)
 
 module.exports=router
