@@ -31,6 +31,18 @@ app.use(session({
 //   next();
 // })
 
+// User signup form set Today date
+
+app.locals.getCurrentDate = () => {
+  const date = new Date();
+  const year = date.getFullYear().toString().padStart(4, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+// End date
+
 //image upload
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {

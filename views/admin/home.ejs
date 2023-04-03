@@ -226,30 +226,33 @@
                             <tr class="text-white">
                                 <!-- <th scope="col"><input class="form-check-input" type="checkbox"></th> -->
                                 <th scope="col">Date</th>
-                                <th scope="col">Invoice</th>
+                                <th scope="col">Phone</th>
                                 <th scope="col">Customer</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">pending </th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%userdata.forEach(el=> {%>
+                            <%payment.forEach(el=> {%>
                                 <tr>
                                     <!-- <td><input class="form-check-input" type="checkbox"></td> -->
                                     <td>
                                         <%=el.date %>
                                     </td>
-                                    <td>INV-0123</td>
                                     <td>
-                                        <%=el.name %>
+                                        <%=el.number %>
                                     </td>
                                     <td>
-                                        <%=el.payment %>
+                                        <%=el.username %>
                                     </td>
-                                    <td>Paid</td>
                                     <td>
-                                        <a  class="btn btn-sm btn-primary" href="/admin/userdetails/<%= el._id %>">Detail</a>
+                                        <%=el.amount %>
+                                    </td>
+                                    <td><%=el.pending %>
+                                    </td>
+                                    <td>
+                                        <a  class="btn btn-sm btn-primary" href="/admin/userdetails/<%= el.userId %>">Detail</a>
                                     </td>
                                 </tr>
                                 <% }) %>

@@ -25,6 +25,7 @@
                       </div>
                     </div>
 
+                    
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
@@ -42,27 +43,33 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input name="password" type="password" class="form-control" placeholder="Password"/>
+                        <input name="password" type="password" class="form-control" placeholder="Password">
                        </div>
                     </div>
 
-                    <div class="d-flex flex-row align-items-center mb-4">
+                    <!-- <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa fa-paypal fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <label>3 month</label>
-                        <input id="3month" name="payment" type="button" class="form-control" value="1500"/>
+                        <input id="3month" name="payment" type="text" class="form-control btn" value="1500"/>
                        </div>
                        <div class="form-outline flex-fill mb-0  ml-4">
                         <label>6 month</label>
-                        <input id="6month" name="payment" type="button" class="form-control" value="2500"/>
+                        <input id="6month" name="payment" type="text" class="form-control btn" value="2500"/>
                        </div>
                        <div class="form-outline flex-fill mb-0  ml-4">
                         <label>1 year</label>
-                        <input id="1year" name="payment" type="button" class="form-control" value="5000"/>
+                        <input id="1year" name="payment" type="text" class="form-control btn" value="5000"/>
                        </div>
-                    </div>   
+                    </div>    -->
+
+                    <select name="payment" id="">
+                      <option value="">15000</option>
+                      <option value="">1000</option>
+                    </select>
+
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <i class="fas fa-photo fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input name="photo" type="file" class="form-control" placeholder="Your photo"/>
                       </div>
@@ -88,122 +95,3 @@
       </div>
     </div>
   </section>
-
-  <script>
-   ////////////////////////////////////////////////  1  year  //////////////////////////////////////////////////////
-document.getElementById('1year').onclick = async function(e){
-  e.preventDefault();
-
-
-  let response = await fetch("/payment",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-    },
-    body: JSON.stringify({
-      amount:500,    
-    })
-  })
-
-  let orderdata = await response.json();
-  console.log(orderdata);
-
-  var options = {
-    "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-    "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "ACK", //your business name
-    "description": "Test Transaction",
-    "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-    },
-};
-var rzp1 = new Razorpay(options);
-    rzp1.open();
-}
-
-
-///////////////////////////////////////////////////////  6 month  /////////////////////////////////////////////////////
-
-document.getElementById('6month').onclick = async function(e){
-  e.preventDefault();
-
-
-  let response = await fetch("/payment",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-    },
-    body: JSON.stringify({
-      amount:500,    
-    })
-  })
-
-  let orderdata = await response.json();
-  console.log(orderdata);
-
-  var options = {
-    "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-    "amount": "500000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "ACK", //your business name
-    "description": "Test Transaction",
-    "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-    },
-};
-var rzp1 = new Razorpay(options);
-    rzp1.open();
-}
-
-
-////////////////////////////////////////////////////////  3month  /////////////////////////////////////////
-
-document.getElementById('3month').onclick = async function(e){
-  e.preventDefault();
-
-  let response = await fetch("/payment",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",        
-    },
-    body: JSON.stringify({
-      amount:500,    
-    })
-  })
-
-  let orderdata = await response.json();
-  console.log(orderdata)
- 
-
-  var options = {
-    "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-    "amount": "100000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "ACK", //your business name
-    "description": "Test Transaction",
-    "order_id": orderdata.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-    },
-};
-var rzp1 = new Razorpay(options);
-    rzp1.open()
-    verifypayment()
-}
-function verifypayment(){
-  $.ajax({
-    url:'/verifypayment',
-    method:'post'
-  })
-}
-
-  </script>

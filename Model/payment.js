@@ -1,11 +1,33 @@
 const mongoose  = require("mongoose")
-const paymentSchema = new mongoose.Schema({
-    paymentId: String,
-    amount: Number,
-    userId: String,
-    status: String,
-  });
-  
-  const Payment = mongoose.model('Payment', paymentSchema)
+const PaymentSchema = new mongoose.Schema({
+  amount: {
+    type: Number
+  },
+  order_id: {
+    type: String,
+    required: true
+  },
+  userId:{
+    type:String
+  },
+  username:{
+    type:String
+  },
+  number:{
+    type:Number
+  },
+  date:{
+    type:String
+  },
+  day:{
+    type:String
+  },
+  pending:{
+    type:String
+  }
 
+});
+
+// Create a model for the payment data
+const Payment = mongoose.model('Payment', PaymentSchema);
   module.exports = Payment
