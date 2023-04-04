@@ -1,31 +1,56 @@
-<!-- payment.ejs-->
+<style>
+  .button {
+     padding: 12px 24px;
+    border-radius: 20px;
+    background-color: #09ff00;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .button:hover {
+    background-color: #2214e7;
+    box-shadow: 0px 4px 8px rgba(228, 86, 63, 0.3);
+  }
+  
+  .razorpay-payment-button {
+    display: none;
+  }
+
+  form{
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+  }
+  body{
+    width: 100%;
+    height: 100%;
+    background-color: #09ff00;
+  }
+
+</style>
+
 <form action="/verifypayment" method="post">
-    <input id="value" type="hidden" name="order_id" value="<%= order_id %>">
-    <input type="hidden" name="userId" value="<%= user_id %>">
-    <input type="hidden" name="username" value="<%= user %>">
-    <input type="hidden" name="number" value="<%= phone %>">
-    <input type="hidden" name="amount" value="<%= amount %>">
-    <input type="hidden" name="day" value="90">
+  <input id="value" type="hidden" name="order_id" value="<%= order_id %>">
+  <input type="hidden" name="userId" value="<%= user_id %>">
+  <input type="hidden" name="username" value="<%= user %>">
+  <input type="hidden" name="number" value="<%= phone %>">
+  <input type="hidden" name="amount" value="<%= amount %>">
+  <input type="hidden" name="day" value="<%= day %>">
     <!-- <input type="date" name="date" value="<#%= getCurrentDate() %>"> -->
 
-    <script
-      src="https://checkout.razorpay.com/v1/checkout.js"
-      data-key="<%= key_id %>"
-      data-currency="INR"
-      data-order_id="<%= order_id %>"
-      data-buttontext="Pay 3 month"
-      data-name="GYM"
-      data-description="Purchase Description"
-      data-prefill.name="John Doe"
-      data-prefill.email="john.doe@example.com"
-      data-theme.color="#F37254"
-    ></script>
-    <button type="submit">payment</button>
-  </form> 
-  
-  <style>
-    .razorpay-payment-button{
-      display: none;
-    }
-  </style>
-
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="<%= key_id %>"
+    data-currency="INR"
+    data-order_id="<%= order_id %>"
+    data-buttontext="Pay 3 month"
+    data-name="GYM"
+    data-description="Purchase Description"
+    data-prefill.name="John Doe"
+    data-prefill.email="john.doe@example.com"
+    data-theme.color="#F37254"
+  ></script>
+  <button class="button" type="submit">Pay Now</button>
+</form>

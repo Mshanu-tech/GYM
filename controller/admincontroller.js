@@ -134,13 +134,17 @@ module.exports = {
             console.log(today);
             const storedDate = new Date(date);
             const diffMs = storedDate - today ;
-            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24 +1))
             console.log(`There are ${diffDays} days between paid${date} and ${today}`);
             const days = el.day
             const num = parseInt(days)
             const day = num-diffDays
+            console.log(day,"fsdfsffadsfsdf");
+            console.log(id);
             payment.findByIdAndUpdate(id,{
-                pending:day
+                pendingday:day
+            }).then(days=>{
+                console.log(days);
             })
         })
         if (req.session.user) {

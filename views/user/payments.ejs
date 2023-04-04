@@ -68,16 +68,17 @@
       transform: rotateY(180deg);
       padding:50px 0px;
     }
+    form{
+      display: flex;
+    }
   </style>
-
-
-<a href="/pay">pay</a>
 
 
   <section>
   <div class="container p-5">
     <div class="row">
        <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">price</h3>
+       <form action="/paypost" method="post">
       <div class="col-lg-4 col-md-12 mb-4">
         <div class="h-100 flip-card">   
           <div class="flip-card-inner">
@@ -92,6 +93,11 @@
               <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
               </svg> Free riding </li>
+              <input type="hidden" name="userId" value="<%= user_id %>">
+              <input type="hidden" name="username" value="<%= user %>">
+              <input type="hidden" name="number" value="<%= phone %>">
+              <input type="hidden" name="amount" value="3000">
+              <input type="hidden" name="day" value="90">
               <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
                 <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
               </svg> Personal trainer</li>
@@ -104,7 +110,9 @@
           </div>
       </div>
     </div>
+  </form>
 
+  <form action="/paypost" method="post">
     <div class="col-lg-4 col-md-12 mb-4">
       <div class="h-100 flip-card">
         <div class="flip-card-inner">
@@ -120,6 +128,11 @@
             <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
               <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
             </svg> Free riding </li>
+            <input type="hidden" name="userId" value="<%= user_id %>">
+            <input type="hidden" name="username" value="<%= user %>">
+            <input type="hidden" name="number" value="<%= phone %>">
+            <input type="hidden" name="amount" value="6000">
+            <input type="hidden" name="day" value="180">
             <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
               <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
             </svg> Personal trainer</li>
@@ -132,8 +145,9 @@
         </div>
     </div>
   </div>
+</form>
 
-
+  <form action="/paypost" method="post">
   <div class="col-lg-4 col-md-12 mb-4">
     <div class="h-100 flip-card">
       <div class="flip-card-inner">
@@ -149,6 +163,11 @@
           <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
             <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
           </svg> Free riding </li>
+          <input type="hidden" name="userId" value="<%= user_id %>">
+          <input type="hidden" name="username" value="<%= user %>">
+          <input type="hidden" name="number" value="<%= phone %>">
+          <input type="hidden" name="amount" value="100000">
+          <input type="hidden" name="day" value="360">
           <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
             <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
           </svg> Personal trainer</li>
@@ -161,157 +180,7 @@
     </div>
   </div>
 </div>
+</form>
 </div>    
 </div>
 </section> 
-
-
-
-
-<!-- Inside index.html -->
-
-<!--Inside index.html -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-  ////////////////////////////////////////////////  1  year  //////////////////////////////////////////////////////
-  document.getElementById('1year').onclick = function(e){
-   
-   e.preventDefault();
- let response = fetch("/payment",{
-   method:"POST",
-   headers:{
-     "Content-Type":"application/json",
-   },
-   body: JSON.stringify({
-     amount:500, 
-   })
- })
-
-
- let orderdata = response.json();
- console.log(orderdata);
-
-var options = {
-   "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
-   "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-   "currency": "INR",
-   "name": "Acme Corp", //your business name
-   "description": "Test Transaction",
-   "image": "https://example.com/your_logo",
-   "order_id": orderdata.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-   "handler": function (response){
-       alert(response.razorpay_payment_id);
-       alert(response.razorpay_order_id);
-       alert(response.razorpay_signature)
-   },
-   "prefill": {
-       "name": "Gaurav Kumar", //your customer's name
-       "email": "gaurav.kumar@example.com",
-       "contact": "9000090000"
-   },
-   "notes": {
-       "address": "Razorpay Corporate Office"
-   },
-   "theme": {
-       "color": "#3399cc"
-   }
-};
-var rzp1 = new Razorpay(options);
-   rzp1.open();
-}
-
-
-
-///////////////////////////////////////////////////////  6 month  /////////////////////////////////////////////////////
-
-document.getElementById('6month').onclick = async function(e){
- e.preventDefault();
-
-
- let response = await fetch("/payment",{
-   method:"POST",
-   headers:{
-     "Content-Type":"application/json",
-   },
-   body: JSON.stringify({
-     amount:500 
-   })
- })
-
- let orderdata = await response.json();
- console.log(orderdata);
-
- var options = {
-   "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-   "amount": "500000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-   "currency": "INR",
-   "name": "ACK", //your business name
-   "description": "Test Transaction",
-   "order_id": orderdata.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-   "handler": function (response){
-       alert(response.razorpay_payment_id)
-       alert(response.razorpay_order_id)
-       alert(response.razorpay_signature)
-   },
-};
-var rzp1 = new Razorpay(options);
-   rzp1.open();
-}
-
-
-////////////////////////////////////////////////////////  3month  /////////////////////////////////////////
-
-document.getElementById('3month').onclick = async function(e){
- e.preventDefault();
-
- // Select the 3 month button element
-const button3Month = document.getElementById('3month');
-
-// Retrieve the value of the button
-const value3Month = button3Month.value;
-
-// Log the value to the console
-console.log(value3Month,"ygyufyff"); // Output: "1500"
-
-
- let response = await fetch("/payment",{
-   method:"POST",
-   headers:{
-     "Content-Type":"application/json",        
-   },
-   body: JSON.stringify({
-     amount:5000,    
-   })
- })
-
- let orderdata = await response.json();
- console.log(orderdata)
-
-
- var options = {
-   "key": "rzp_test_obFeIuhvv6VqPb", // Enter the Key ID generated from the Dashboard
-   "amount": "10000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-   "currency": "INR",
-   "name": "ACK", //your business name
-   "description": "Test Transaction",
-   "order_id": orderdata.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-   "handler": function (response){
-       alert(response.razorpay_payment_id)
-       alert(response.razorpay_order_id)
-       alert(response.razorpay_signature)
-   },
-};
-var rzp1 = new Razorpay(options);
-   rzp1.open()
-   verifypayment(value3Month)
-   console.log(value3Month,"ygyddmsfkufyff");
-}
-function verifypayment(value) {
- $.ajax({
-   url: '/verifypayment?value=' + value,
-   method: 'post'
- });
-}
-
-
- </script>

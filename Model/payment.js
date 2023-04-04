@@ -22,7 +22,7 @@ const PaymentSchema = new mongoose.Schema({
   day:{
     type:String
   },
-  pending:{
+  pendingday:{
     type:String
   }
 
