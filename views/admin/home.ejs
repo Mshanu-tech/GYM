@@ -178,7 +178,9 @@
                         <i class="fa fa-chart-pie fa-3x text-primary"></i>
                         <div class="ms-3">
                             <p class="mb-2">Total </p>
-                            <h6 class="mb-0">$1234</h6>
+                            <!-- <h6 class="mb-0"><# %payment.forEach(el => {%>
+                            <h5> <#%= const amount+=el.amount %> </h5>
+                           <#% }); %></h6> -->
                         </div>
                     </div>
                 </div>
@@ -249,7 +251,8 @@
                                     <td>
                                         <%=el.amount %>
                                     </td>
-                                    <td><%=el.pending %>
+                                    <td>
+                                        <%=el.pendingday %>
                                     </td>
                                     <td>
                                         <a  class="btn btn-sm btn-primary" href="/admin/userdetails/<%= el.userId %>">Detail</a>

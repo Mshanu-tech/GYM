@@ -1,0 +1,6 @@
+<h1>Attendance for <%= attendance.date %></h1>
+<ul>
+  <%=attendance.status.forEach((status) => { %>
+    <li><%= status.name %>: <%= status.isPresent %></li>
+  <% }) %>
+</ul>

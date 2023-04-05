@@ -3,11 +3,13 @@ const { admins } = require("../Model/adminmodel")
 const equipmentschema = require("../Model/equipment")
 const { workout } = require("../Model/workout")
 const payment = require("../Model/payment")
+const Attendance = require("../Model/attendances")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
 const { render } = require("ejs")
 const Razorpay = require("razorpay")
 const crypto = require("crypto")
+const Payment = require("../Model/payment")
 
 module.exports = {
     getindex: (req, res) => {
@@ -54,38 +56,59 @@ module.exports = {
         res.render("user/login")
     },
     postlogin: async (req, res) => {
-        try {
+       // try {
+        const payments = await Payment.find()
+        payments.forEach(el => {
+            var id = el._id
+            const date = el.date
+            const today = new Date()
+            const storedDate = new Date(date);
+            const diffMs = storedDate - today ;
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+            const days = el.day
+            const num = parseInt(days)
+            const day = num+diffDays
+            Payment.findByIdAndUpdate(id,{
+                pendingday:day
+            }).then(days=>{
+                //console.log(days);
+            })
+        })
             const user = await userschema.findOne({ email: req.body.email })
             if (user) {
-                console.log(user);
-                const id = await user.payid
-                const payid = await payment.findById(id)
-                console.log(pending, id, payid);
-                if (payid) {
-                    let data = await bcrypt.compare(req.body.password, user.password)
-                    if (data) {
+                //console.log(user);
+                let data = await bcrypt.compare(req.body.password, user.password)
+                if (data) {
+                    const id = user.payid
+                    const username = user.name
+                    const user_id = user.id
+                    const phone = user.number
+                    const paymentvalidation = await Payment.find({pendingday:0})
+                    console.log(paymentvalidation);
+                    if (id && !paymentvalidation) {
                         req.session.user = data
+                        var payment = await Payment.findById(id)
                         var equipment = await equipmentschema.find()
                         var admindata = await admins.find()
-                        res.render("user/home", { equipment, admindata, user })
+                        res.render("user/home", { equipment, admindata, user,payment })
+                        
 
                     } else {
-                        res.redirect('/login')
-                        console.log("password not equal");
+                        res.render('user/payments', { username, user_id, phone })
+                        console.log("please pay");
                     }
                 } else {
-                    res.render("user/payment")
+                    res.redirect("/login")
+                    console.log("password wrong");
                 }
-            }
-        } catch {
-            res.redirect('/signup')
-        }
-    },
 
-    payment: async (req, res) => {
-        const id = req.params.id
-        const user = await userschema.findById(id)
-        res.render("user/payments")
+            } else {
+                res.redirect("/login")
+                console.log("email worng");
+            }
+        // } catch (error) {
+        //     console.log(error);
+        // }
     },
 
 
@@ -181,7 +204,7 @@ module.exports = {
                 date: isoDateStr,
                 day: req.body.day
             })
-
+ 
             await userpaymentdetails.save().then(userpaymentdetails => {
                 console.log(userpaymentdetails);
                 const userid = userpaymentdetails.userId
@@ -201,8 +224,16 @@ module.exports = {
         }
     },
 
+    Attendance:async(req,res)=>{
+const username= req.body.name
+const attendance = await Attendance.find({"status.name": username })
+res.render("user/attendance",{attendance})
+
+    },
+
     home: async (req, res) => {
         if (req.session.user) {
+            var payment = await Payment.find()
             var equipment = await equipmentschema.find()
             var admindata = await admins.find()
             res.render("user/home", { equipment, admindata })

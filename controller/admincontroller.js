@@ -3,7 +3,6 @@ const userschema = require("../Model/usermodel")
 const equipment = require("../Model/equipment")
 const { workout } = require("../Model/workout")
 const attendance = require("../Model/attendances")
-const payment = require("../Model/payment")
 const multer = require("multer")
 const bcrypt = require("bcrypt")
 const equipmentschema = require("../Model/equipment")
@@ -126,34 +125,15 @@ module.exports = {
         res.redirect("/admin/home")
     },
     adminhome: async (req, res) => {
-        const payments = await Payment.find()
-        payments.forEach(el => {
-            var id = el._id
-            const date = el.date
-            const today = new Date()
-            console.log(today);
-            const storedDate = new Date(date);
-            const diffMs = storedDate - today ;
-            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24 +1))
-            console.log(`There are ${diffDays} days between paid${date} and ${today}`);
-            const days = el.day
-            const num = parseInt(days)
-            const day = num-diffDays
-            console.log(day,"fsdfsffadsfsdf");
-            console.log(id);
-            payment.findByIdAndUpdate(id,{
-                pendingday:day
-            }).then(days=>{
-                console.log(days);
-            })
-        })
         if (req.session.user) {
             var userdata = await userschema.find()
             var equipment = await equipmentschema.find()
-            const payment = await Payment.find().sort({pending:1})
+            const payment = await Payment.find().sort({pendingday:1})
+            const amount =await Payment.find()
+            console.log(amount);
             const totaluser = await userdata.length
             const totalequipment = await equipmentschema.length
-            console.log(totaluser);
+            //console.log(totaluser);
             res.render('admin/home', { userdata, equipment, totaluser, totalequipment, payment })
         } else {
             res.redirect("/admin")

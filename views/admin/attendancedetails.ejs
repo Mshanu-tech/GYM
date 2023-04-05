@@ -1,16 +1,16 @@
 <div class="table-responsive" style="display: flex;">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Attendance Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for (let i=0; i < details.length; i++) { %>
+  <% for (let i=details.length-1; i >= 0; i--) { %>
+    <table class="table table-bordered <%= 'table-' + (i - 1) %>">
+      <thead>
         <tr>
-          <td rowspan="<%= details[i].status.length %>"><%= details[i].date %></td>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Attendance Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="<%= details[i].status.length %>"><%= details[i].date%></td>
           <% for (let j=0; j < details[i].status.length; j++) { %>
             <td><%= details[i].status[j].name %></td>
             <td><%= details[i].status[j].isPresent %></td>
@@ -19,13 +19,33 @@
             <tr>
           <% } %>
           <% } %>
-        <% } %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  <% } %>
 </div>
 
 <style>
-  body{
-    background-color: rgb(16, 63, 71);
-  }
+.table-1 {
+  color: red;
+}
+
+.table-2 {
+  color: rgb(0, 255, 42);
+}
+
+.table-3 {
+color: blue;
+}
+.table-4 {
+color: rgb(229, 255, 0);
+}
+.table-5 {
+color: rgb(8, 160, 248);
+}
+.table-6 {
+color: rgb(136, 11, 17);
+}
+.table-7 {
+color: rgb(0, 217, 255);
+}
 </style>

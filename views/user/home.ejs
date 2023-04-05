@@ -17,6 +17,9 @@
             <a href="workout" class="nav-link">workout</a>
           </li>
           <li class="nav-item">
+            <a href="/attendance/<%=user.name %>" class="nav-link">Attendance</a>
+          </li>
+          <li class="nav-item">
             <a href="#service" class="nav-link scroll">service</a>
           </li>
           <li class="nav-item">
@@ -42,6 +45,7 @@
               <li>
                 <div class="slider-img">
                   <div class="slider-info ">
+                    <h3>Pending Day <%=payment.pendingday %></h3>
                     <h4>Fitness is Good</h4>
                     <h5> Grow Your Strength</h5>
                     <div class="mt-3 outs_more-buttn">
@@ -53,6 +57,7 @@
               <li>
                 <div class="slider-img">
                   <div class="slider-info ">
+                    <h3>Payment Day <%=payment.day %></h3>
                     <h4>Fitness And Stronger </h4>
                     <h5>Real Athletes</h5>
                     <div class="mt-3 outs_more-buttn">
@@ -64,6 +69,7 @@
               <li>
                 <div class="slider-img">
                   <div class="slider-info">
+                    <h3> Payment Amount <%=payment.amount %></h3>
                     <h4>Fitness And Health</h4>
                     <h5>With Double Power</h5>
                     <div class="mt-3 outs_more-buttn">

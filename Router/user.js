@@ -14,10 +14,10 @@ const {
      home,
      getupdate,
      postupdate,
-     payment,
+     //payment,
      verifypayment,
      paypost,
-     //postpay
+     Attendance
 }=require("../controller/usercontroller")
 
 
@@ -32,9 +32,10 @@ router.get("/workout",getworkout)
 router.get("/home",home)
 router.get("/update/:id",getupdate)
 router.post("/update/:id",postupdate)
-router.get("/payment",payment)
+//router.get("/payment",payment)
 router.post("/verifypayment",verifypayment)
 router.post("/paypost",paypost)
 //router.post("postpay",postpay)
+router.get("/attendance/:name",Attendance)
 
 module.exports=router
