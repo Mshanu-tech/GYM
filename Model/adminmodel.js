@@ -20,6 +20,9 @@ const adminschema = new mongoose.Schema({
     password: {
         type: String,
         require: true
+    },
+    photo:{
+        type:String
     }
 })
 

@@ -6,7 +6,7 @@ const payment = require("../Model/payment")
 const Attendance = require("../Model/attendances")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
-const { render } = require("ejs")
+const { render, name } = require("ejs")
 const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const Payment = require("../Model/payment")
@@ -32,16 +32,16 @@ module.exports = {
                     email: req.body.email,
                     number: req.body.number,
                     password: req.body.password,
-                    //photo: req.file.filename,
+                    photo: req.file.filename,
                     username: req.body.username,
-                    day: req.body.day
+                    
                 })
                 /// console.log(amount,"Payment successful")
                 await usermodel.save().then(user => {
                     console.log(user);
                     res.render('user/payments', {
                         user_id: user.id,
-                        user: user.name,
+                        username: user.name,
                         phone: user.number
                     });
                 })
@@ -80,20 +80,27 @@ module.exports = {
                 let data = await bcrypt.compare(req.body.password, user.password)
                 if (data) {
                     const id = user.payid
+                    console.log(id);
                     const username = user.name
                     const user_id = user.id
                     const phone = user.number
-                    const paymentvalidation = await Payment.find({pendingday:0})
-                    console.log(paymentvalidation);
-                    if (id && !paymentvalidation) {
+ 
+                    if(id){
+                    const paymentvalidation = await Payment.findById(id)
+                    const pendingday = paymentvalidation.pendingday
+                    console.log(pendingday,"pending day");
+
+                    if (pendingday>0) {  
                         req.session.user = data
                         var payment = await Payment.findById(id)
                         var equipment = await equipmentschema.find()
                         var admindata = await admins.find()
                         res.render("user/home", { equipment, admindata, user,payment })
-                        
-
-                    } else {
+                    }else{
+                        res.render('user/payments', { username, user_id, phone })
+                        console.log("please pay");
+                    }
+                } else {
                         res.render('user/payments', { username, user_id, phone })
                         console.log("please pay");
                     }
@@ -225,8 +232,24 @@ module.exports = {
     },
 
     Attendance:async(req,res)=>{
-const username= req.body.name
-const attendance = await Attendance.find({"status.name": username })
+const username= req.params.name
+const attendance = await Attendance.find()
+console.log(attendance);
+attendance.forEach(el => {
+    el.status.forEach(els => {
+        const na = els.name
+        if(els.name = username){
+            const user:{
+                els.isPresent
+            }
+        }
+        console.log(name);
+        console.log(els.name,els.isPresent,el.date);
+    });
+    //console.log(el.status,el.date);
+});
+
+// console.log(attendance ,"sddsfdf");
 res.render("user/attendance",{attendance})
 
     },

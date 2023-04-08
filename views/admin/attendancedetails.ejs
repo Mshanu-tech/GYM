@@ -1,6 +1,16 @@
-<div class="table-responsive" style="display: flex;">
+<style>
+  .table{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 5px solid ;
+    border-color: rgb(255 255 255)
+  }
+</style>
+<div class="container">
+  <div class="row" style="display:flex;">
+    <div class="col-lg-12 col-md-8 col-sm-4"></div>
   <% for (let i=details.length-1; i >= 0; i--) { %>
-    <table class="table table-bordered <%= 'table-' + (i - 1) %>">
+    <table class="table table-bordered ">
       <thead>
         <tr>
           <th>Date</th>
@@ -21,31 +31,8 @@
           <% } %>
       </tbody>
     </table>
+    <br> <!-- Add a line break here -->
   <% } %>
 </div>
+</div>
 
-<style>
-.table-1 {
-  color: red;
-}
-
-.table-2 {
-  color: rgb(0, 255, 42);
-}
-
-.table-3 {
-color: blue;
-}
-.table-4 {
-color: rgb(229, 255, 0);
-}
-.table-5 {
-color: rgb(8, 160, 248);
-}
-.table-6 {
-color: rgb(136, 11, 17);
-}
-.table-7 {
-color: rgb(0, 217, 255);
-}
-</style>

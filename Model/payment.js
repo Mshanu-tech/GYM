@@ -23,11 +23,9 @@ const PaymentSchema = new mongoose.Schema({
     type:String
   },
   pendingday:{
-    type:String 
+    type:Number
   }
-
 });
 
-// Create a model for the payment data
 const Payment = mongoose.model('Payment', PaymentSchema);
   module.exports = Payment

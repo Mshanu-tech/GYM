@@ -28,7 +28,8 @@ module.exports = {
             email: req.body.email,
             number: req.body.number,
             password: req.body.password,
-            username: req.body.username
+            username: req.body.username,
+            photo: req.file.filename,
         })
         await admin.save().then(admin => {
             res.redirect('/admin')
@@ -126,15 +127,33 @@ module.exports = {
     },
     adminhome: async (req, res) => {
         if (req.session.user) {
+            const admin = await admins.findById('643118041917040110bf0519')
             var userdata = await userschema.find()
             var equipment = await equipmentschema.find()
-            const payment = await Payment.find().sort({pendingday:1})
-            const amount =await Payment.find()
-            console.log(amount);
+            const payment = await Payment.find().sort({ pendingday: 0 })
+            const amounts = await Payment.find()
             const totaluser = await userdata.length
             const totalequipment = await equipmentschema.length
-            //console.log(totaluser);
-            res.render('admin/home', { userdata, equipment, totaluser, totalequipment, payment })
+            const currentyear = new Date().getFullYear();
+            const currentmonth = new Date().getMonth();
+            let year = 0
+            let month = 0
+            var da =
+                amounts.forEach(el => {
+                    const date = new Date(el.date);
+                    const isoString = date.toISOString();
+                    const paymentYear = date.getFullYear();
+                    const paymentmonth = date.getMonth();
+                    if(paymentYear === currentyear){
+                        year += el.amount
+                    }
+                    if(paymentmonth === currentmonth){
+                        month += el.amount
+                    }
+                })
+            console.log(year,month);
+            res.render('admin/home', { userdata, equipment, totaluser, totalequipment, payment, year, month,admin })
+
         } else {
             res.redirect("/admin")
         }
@@ -148,27 +167,27 @@ module.exports = {
         const obj = req.body
         console.log(obj);
         let arr = obj.name.map((element, index) => {
-            return {name: element, isPresent: obj.status[index] === 'present' ? true : false}
-          })
-          
-          
+            return { name: element, isPresent: obj.status[index] === 'present' ? true : false }
+        })
+
+
         const attendance = new attendances({
-            date:req.body.date,
-            status:arr,
+            date: req.body.date,
+            status: arr,
         })
         console.log(arr)
         await attendance.save().then(atten => {
             console.log(atten);
             res.redirect("/admin/home")
-        }) 
+        })
     },
-
+ 
     attendancedetails: async (req, res) => {
-        const details = await attendance.find()
+         const details = await attendance.find()
         res.render("admin/attendancedetails", { details })
     },
 
-    userdetails: async (req,res)=>{
+    userdetails: async (req, res) => {
         const id = req.params.id
         userschema.findById(id).then(userdata => {
             console.log(userdata);
@@ -176,12 +195,19 @@ module.exports = {
         })
     },
 
+    profile:async(req,res)=>{
+        const id = ('643118041917040110bf0519')
+        const admin = await admins.findById(id)
+        console.log(admin);
+        res.render("admin/profile",{admin})
+    },
+
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) {
                 console.log(err);
             } else {
-                res.redirect("/")
+                res.redirect("/admin")
             }
         })
     },
