@@ -22,8 +22,9 @@ module.exports = {
 
     postsignup: async (req, res) => {
         try {
-            const user = await userschema.findOne({ email: req.body.email })
-            if (user) {
+            const useremail = await userschema.findOne({ email: req.body.email })
+            const username = await userschema.findOne({username:req.body.username})
+            if (useremail && username ) {
                 // res.status(422).json({ error: 'Email already exist' })
                 res.redirect("/signup")
             } else {
@@ -86,6 +87,7 @@ module.exports = {
                     const phone = user.number
  
                     if(id){
+                        
                     const paymentvalidation = await Payment.findById(id)
                     const pendingday = paymentvalidation.pendingday
                     console.log(pendingday,"pending day");
@@ -232,27 +234,27 @@ module.exports = {
     },
 
     Attendance:async(req,res)=>{
-const username= req.params.name
-const attendance = await Attendance.find()
-console.log(attendance);
-attendance.forEach(el => {
-    el.status.forEach(els => {
-        const na = els.name
-        if(els.name = username){
-            const user:{
-                els.isPresent
-            }
-        }
-        console.log(name);
-        console.log(els.name,els.isPresent,el.date);
-    });
-    //console.log(el.status,el.date);
-});
-
-// console.log(attendance ,"sddsfdf");
-res.render("user/attendance",{attendance})
-
+        const username= req.params.name
+        const attendance = await Attendance.find()
+        //console.log(attendance);
+        var arr=[]
+        attendance.forEach(el => {
+            el.status.forEach(els => {
+                const na = els.name
+                if(els.name === username){
+                     const obj = {
+                        //name : els.name,
+                        present : els.isPresent,
+                        date :el.date
+                    }
+                    arr.push(obj);
+                }
+            });
+        })
+       // console.log(arr.length);
+        res.render("user/attendance",{arr});
     },
+    
 
     home: async (req, res) => {
         if (req.session.user) {

@@ -11,7 +11,6 @@ const adminschema = new mongoose.Schema({
     username:{
         type: String,
         require: true,
-        unique: true
     },
     number: {
         type: Number,

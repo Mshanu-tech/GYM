@@ -169,7 +169,7 @@ module.exports = {
         let arr = obj.name.map((element, index) => {
             return { name: element, isPresent: obj.status[index] === 'present' ? true : false }
         })
-
+        
 
         const attendance = new attendances({
             date: req.body.date,
