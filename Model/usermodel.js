@@ -19,9 +19,9 @@ const userschema = new mongoose.Schema({
     photo:{
         type:String
     },
-    streak:{
-        type:Number
-    },
+    // streak:{
+    //     type:Number
+    // },
     weight:{
         type:String
     },

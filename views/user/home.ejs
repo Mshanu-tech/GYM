@@ -1,8 +1,10 @@
-<!-- fireicon -->
-
-<!-- fireicon -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+<style>
+  a{
+    color: white;
+  }
+  
+</style>
 <div class="header-w3layouts">
   <div class="container-fluid">
     <!--//navigation section -->
@@ -16,23 +18,23 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#" style="color: rgb(255, 255, 255);">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a href="workout" class="nav-link">workout</a>
+            <a href="workout" class="nav-link" style="color: rgb(255, 246, 246);">workout</a>
           </li>
           <li class="nav-item">
-            <a href="/attendance/<%=user.name %>" class="nav-link">Attendance</a>
+            <a href="/attendance/<%=user.name %>" class="nav-link" style="color: rgb(255, 255, 255);">Attendance</a>
             <% console.log(user.name); %>
           </li>
           <li class="nav-item">
-            <a href="#service" class="nav-link scroll">service</a>
+            <a href="#service" class="nav-link scroll" style="color: rgb(255, 255, 255);">service</a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="nav-link scroll">About</a>
+            <a href="#about" class="nav-link scroll" style="color: rgb(255, 255, 255);">About</a>
           </li>
         </ul>
-         <a class="btn btn-primary" href="/logout">Logout</a>
+         <a class="btn btn-primary" href="/logout" style="color: rgb(255, 255, 255); ">Logout</a>
       </div>
     </nav>
     <!--//navigation section -->
@@ -51,6 +53,7 @@
               <li>
                 <div class="slider-img">
                   <div class="slider-info ">
+                    <h1>Your Streak  <%=streak %> <img src="images/fire.png" style="width: 50px;" alt=""></h1>
                     <h3>Pending Day <%=payment.pendingday %></h3>
                     <h4>Fitness is Good</h4>
                     <h5> Grow Your Strength</h5>
@@ -96,7 +99,7 @@
   <!-- //banner -->
   <!-- About-one --> 
 
-  <section class="about " id="about">
+  <section class="about " id="about" style="background-color: aliceblue;">
     <div class="container">
       <div class="row effcet-about">
         <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
@@ -116,9 +119,9 @@
   </section>
   <!-- //About-one -->
   <!--service-->	
-  <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
+  <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service" >
     <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Services</h3>
+      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" >Our Services</h3>
       <div class="row top-service pb-lg-4 pb-md-3 pb-2">
         <div class="col-lg-8 col-md-8 service-agile-info-left"  data-aos="fade-right"
           data-aos-offset="250"
@@ -199,15 +202,15 @@
     </div>
   </section> -->
   <!--//clients-->
-  <div class="container-fluid pt-4 px-4">
-    <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Equipment</h3>
+  <div class="container-fluid pt-4 px-4 pb-5" style="background-color: white;">
+    <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" style="color: black;">Equipment</h3>
     <div class="row g-4 ">
         <% equipment.forEach(el=> { %>
-            <div class="col-lg-4 col-md-6" style="display: flex; justify-content: center;">
-                <div class="card" style="width: 18rem;">
+            <div class="col-lg-4 col-md-6" style="display: flex; justify-content: center; ">
+                <div class="card" style="width: 18rem; border: 3px solid black;">
                     <img class="card-img-top" src="/<%= el.photo %>" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title" style="color: black;">
                             <%= el.name %>
                         </h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the
@@ -221,9 +224,9 @@
 
   
   <!-- team -->
-  <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team">
+  <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team" >
     <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3">Our Traines</h3>
+      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" >Our Traines</h3>
       <div class="row text-center "style="justify-content: center;">
         
         <div class="col-lg-3 col-md-6 col-sm-6 news-img" data-aos="fade-up"
@@ -256,7 +259,7 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555"></iframe>
   </div>
   <!--contact -->
-  <Section class="contact py-lg-4 py-md-3 py-sm-3 py-3" id="contact">
+  <Section class="contact py-lg-4 py-md-3 py-sm-3 py-3" id="contact" style="background-color: aliceblue;">
     <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
       <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Contact Us</h3>
       <div class="mb-lg-5 mb-md-4 mb-3 row contact-right ">
