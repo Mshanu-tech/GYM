@@ -6,13 +6,24 @@ const payment = require("../Model/payment")
 const Attendance = require("../Model/attendances")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
+const nodemailer = require("nodemailer")
 const { render, name } = require("ejs")
 const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const Payment = require("../Model/payment")
 const attendances = require("../Model/attendances")
 
+
+let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'mygym72@gmail.com',
+        pass: 'jtjlzhbwscwyxszq'
+    }
+})
+
 module.exports = {
+
     getindex: (req, res) => {
         res.render("user/index")
     },
@@ -25,8 +36,16 @@ module.exports = {
         try {
             const useremail = await userschema.findOne({ email: req.body.email })
             const username = await userschema.findOne({ username: req.body.username })
+            const email = req.body.email
+            const val = Math.floor(1000 + Math.random() * 9000);
+            console.log(val,email);
+            await mailTransporter.sendMail({
+                to: email,
+                from: 'mygym72@gmail.com',
+                subject: 'OTP',
+                html: `<h4> Your OTP is </h4>:<h2>${val}</h2>`
+            });
             if (useremail && username) {
-                // res.status(422).json({ error: 'Email already exist' })
                 res.redirect("/signup")
             } else {
                 const usermodel = new userschema({
@@ -34,7 +53,7 @@ module.exports = {
                     email: req.body.email,
                     number: req.body.number,
                     password: req.body.password,
-                    photo: req.file.filename,
+                    //photo: req.file.filename,
                     username: req.body.username,
 
                 })

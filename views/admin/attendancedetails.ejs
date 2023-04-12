@@ -7,29 +7,36 @@
 .attendance-table {
   border: 1px solid #ccc;
   border-collapse: collapse;
+  background-color: rgb(255, 238, 144);
 }
-
 .attendance-table th, .attendance-table td {
   padding: 10px;
   border: 1px solid #ccc;
-
 }
+
 body{
-    background-image: url('https://media.istockphoto.com/id/1341453707/vector/3d-vector-conceptual-illustration-of-paper-test.jpg?s=612x612&w=is&k=20&c=afXXr7UQPQ_GVpSEwLqjN5hDM9QGNZXBwCJzmpZw0f8=');
+background-color: yellowgreen;
+height: 100%;
   }
 </style>
+
 <div class="container">
   <div class="row" style="display:flex;">
-    <div class="col-lg-12 col-md-8 col-sm-4"></div>
-    <div class="col-lg-12 col-md-8 col-sm-4">
-      <label for="days">Number of Days:</label>
-      <input type="number" id="days" name="days" min="1" max="<%= details.length %>" value="7">
-      <button id="filter-btn">Filter</button>
+    <div class="col-lg-12 col-md-8 col-sm-4 d-flex justify-content-between" style="margin-top: 39px;margin-bottom: 33px;">
+      <form class="form-inline">
+        <input class="form-control" style="color:black; background-color: white;" type="date" id="date" name="date" placeholder="Select Date">
+        <button class="btn btn-outline-dark" style="margin-left: 5px;" type="submit">Search</button>
+      </form>
+      <div class="form-inline" style="padding: auto;">
+        <label for="days" style="font-weight: bold; color: black; font-size: large;">Number of Days:</label>
+        <input class="form-control" style="margin-left: 5px; color:black; background-color: white;" type="number" id="days" name="days" min="1" max="<%= details.length %>" value="7">
+        <button id="filter-btn" style="margin-left: 5px;" class="btn btn-success">Filter</button>
+      </div>
     </div>
   </div>
-  <div class="row" id="attendance-container"> <!-- Add an ID here to select the attendance container later -->
+  <div class="row" id="attendance-container">
     <% for (let i=details.length-1; i >= 0; i--) { %>
-      <table class="table table-bordered attendance-table" style=" color: black;">
+      <table class="table table-bordered attendance-table " style="color: black;">
         <thead>
           <tr>
             <th>Date</th>
@@ -42,7 +49,14 @@ body{
             <td rowspan="<%= details[i].status.length %>"><%= details[i].date%></td>
             <% for (let j=0; j < details[i].status.length; j++) { %>
               <td><%= details[i].status[j].name %></td>
-              <td><%= details[i].status[j].isPresent %></td>
+              <td>
+                <% const trues = "true" %>
+                <% if (details[i].status[j].isPresent == trues) { %>
+                  present
+                <% } else { %>
+                  absent
+                <% } %>
+              </td>
             </tr>
             <% if (j < details[i].status.length - 1) { %>
               <tr>
@@ -59,8 +73,20 @@ body{
   $(document).ready(function() {
     $('#filter-btn').on('click', function() {
       const days = $('#days').val();
-      $('#attendance-container .attendance-table').hide(); // Hide all attendance tables within the container
-      $('#attendance-container .attendance-table:lt(' + days + ')').show(); // Show the first "days" attendance tables
+      $('#attendance-container .attendance-table').hide();
+      $('#attendance-container .attendance-table:lt(' + days + ')').show();
+    });
+
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      const selectedDate = $('#date').val();
+      $('#attendance-container .attendance-table').hide();
+      $('#attendance-container .attendance-table').each(function() {
+        const date = $(this).find('td:first').text();
+        if (date == selectedDate) {
+          $(this).show();
+        }
+      });
     });
   });
 </script>

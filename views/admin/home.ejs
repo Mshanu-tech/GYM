@@ -59,71 +59,8 @@
             </form>
             <div class="navbar-nav align-items-center ms-auto">
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="/images/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="/images/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <div class="d-flex align-items-center">
-                                <img class="rounded-circle" src="/images/user.jpg" alt=""
-                                    style="width: 40px; height: 40px;">
-                                <div class="ms-2">
-                                    <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                    <small>15 minutes ago</small>
-                                </div>
-                            </div>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item text-center">See all message</a>
-                    </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <!-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a> -->
-                    <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Profile updated</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">New user added</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            <h6 class="fw-normal mb-0">Password changed</h6>
-                            <small>15 minutes ago</small>
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item text-center">See all notifications</a>
-                    </div>
-                </div>
+               
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <img class="rounded-circle me-lg-2" src="/<%=admin.photo %>" alt=""
@@ -131,8 +68,8 @@
                         <span class="d-none d-lg-inline-flex"><%=admin.name %></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                        <a href="/admin/profile" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
+                        <!-- <a href="/admin/profile" class="dropdown-item">My Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a> -->
                         <a href="/admin/logout" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
@@ -188,7 +125,7 @@
 
 
         <!-- Sales Chart Start -->
-        <div class="container-fluid pt-4 px-4">
+        <!-- <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-secondary text-center rounded p-4">
@@ -209,7 +146,40 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <div class="col-sm-12 col-md-12 col-xl-12 d-flex justify-content-evenly mt-5 ">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Calender</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div id="calender"></div>
+                        </div>
+                        <div class="wrapper">
+                            <div class="profile" style="background-image: url('/<%=admin.photo %>');">
+                                <div class="overlay">
+                                    <div class="about d-flex flex-column">
+                                        <h4><%=admin.name %></h4> <span><%=admin.username %></span>
+                                        <span><%=admin.email %></span>
+                                    </div>
+                                    <ul class="social-icons">
+                                        <li><i class="fa fa-facebook"></i></li>
+                                        <li><i class="fa fa-linkedin"></i></li>
+                                        <li><i class="fa fa-twitter"></i></li>
+                                        <li><i class="fa fa-instagram"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .wrapper{display: flex;background:#000}.profile{position: relative;width: 281px;height: 327px;background:url('https://i.imgur.com/sAtgYjl.jpg');background-size: cover;cursor: pointer;border: 12px;border-top-right-radius: 35px !important;border-radius: 6px}.overlay{width: 100%;height: 100%;background:rgba(0,0,0,0.8);border-radius: 12px;cursor: pointer;opacity: 0;transition: all 1s;border-top-right-radius: 35px !important;border-radius: 6px}.profile:hover .overlay{opacity: 1}.social-icons{display: flex;list-style: none;bottom: 10px;position: absolute;text-align: center;justify-content: center;left: 22px}.social-icons li{width: 25px;height: 25px;border: 1px solid #eee;padding: 20px;margin-right: 10px;display: flex;justify-content: center;align-items: center;color: #fff;border-radius: 5px;transition: all 1s}.social-icons li:hover{background:#fff;color: #000}.overlay .about{position: relative;justify-content: center;align-items: center;display: flex;top:40%;color: #fff;flex: column}
+                    </style>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    
+                    
         <!-- Sales Chart End -->
         <!-- Recent Sales Start -->
         <div class="container-fluid pt-4 px-4">
@@ -315,15 +285,7 @@
                     <% }) %>
             </div>
 
-            <!-- <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-secondary rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Calender</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <div id="calender"></div>
-                        </div>
-                    </div> -->
+            
         </div>
     </div>
     <!-- Widgets End -->

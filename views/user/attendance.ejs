@@ -2,24 +2,35 @@
   table {
     border-collapse: collapse;
     width: 100%;
-    color: #333;
+    color: #000000;
     font-family: Arial, sans-serif;
     font-size: 16px;
+    border: 2px solid #008CBA; /* add a border around the table */
+    margin-bottom: 20px; /* add some space below the table */
   }
   th, td {
     padding: 10px;
     text-align: left;
     vertical-align: middle;
+    border: 1px solid #ddd; /* add borders to each cell */
   }
   th {
     background-color: #008CBA;
     color: white;
+    font-weight: bold; /* make the header text bold */
+    text-transform: uppercase; /* make the header text uppercase */
   }
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   tr:hover {
     background-color: #ddd;
+  }
+  td:first-child {
+    font-weight: bold; /* make the first column bold */
+  }
+  td:last-child {
+    text-align: center; /* center the last column */
   }
 </style>
 
