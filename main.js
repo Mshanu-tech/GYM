@@ -8,7 +8,7 @@ const session = require("express-session")
 const multer = require('multer');
 const path = require("path")
 const bodyparse = require("body-parser")
-const auth = require("./middleware/auth")
+
 
 //Database connection
 mongoose.set('strictQuery', true)

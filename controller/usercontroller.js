@@ -32,47 +32,72 @@ module.exports = {
         res.render("user/signup")
     },
 
-    postsignup: async (req, res) => {
-        try {
-            const useremail = await userschema.findOne({ email: req.body.email })
-            const username = await userschema.findOne({ username: req.body.username })
-            const email = req.body.email
-            const val = Math.floor(1000 + Math.random() * 9000);
-            console.log(val,email);
-            await mailTransporter.sendMail({
-                to: email,
-                from: 'mygym72@gmail.com',
-                subject: 'OTP',
-                html: `<h4> Your OTP is </h4>:<h2>${val}</h2>`
-            });
-            if (useremail && username) {
-                res.redirect("/signup")
-            } else {
-                const usermodel = new userschema({
-                    name: req.body.name,
-                    email: req.body.email,
-                    number: req.body.number,
-                    password: req.body.password,
-                    //photo: req.file.filename,
-                    username: req.body.username,
+    otpverification:(req,res)=>{
+        res.render("user/otpverification")
+    },
 
+    postsignup: async (req,res) => {
+        const { name, email, password, confirmPass, number } = req.body;
+        if (!name || !email || !password || !confirmPass || !number) {
+            return res.status(422).json({ error: 'plz fill the property' });
+        }
+
+        try {
+            const userExist = await userschema.findOne({ email: email });
+            if (!userExist) {
+                return res.status(422).json({ error: 'Email already exist' })
+            } else if (password != confirmPass) {
+                res.redirect('/signup')
+
+
+            } else {
+                var val = Math.floor(1000 + Math.random() * 9000);
+                req.body.token = val
+                req.session.signup = req.body
+
+                mailTransporter.sendMail({
+                    to: email,
+                    from: process.env.EMAIL,
+                    subject: 'Signup Verification',
+                    html: `<h4>This your token for OTP Verfication </h4>:<h2>${val}</h2>`
                 })
-                /// console.log(amount,"Payment successful")
-                await usermodel.save().then(user => {
-                    console.log(user);
+                res.redirect('/otpverification')
+
+            }
+            console.log(req.body);
+
+        } catch (err) {
+            console.log(err)
+            res.redirect('/404error')
+        }
+    },
+
+    otpverificatons: async (req, res) => {
+        try {
+            const { digit1, digit2, digit3, digit4 } = req.body
+            const otp = digit1 + digit2 + digit3 + digit4
+            const { name, email, password, confirmPass, token, number } = req.session.signup;
+
+            if (token == otp) {
+                const user = new userschema({ name, email, password, number })
+                console.log(user);
+                await user.save().then((doc) => {
+                    req.session.logg = doc
                     res.render('user/payments', {
                         user_id: user.id,
                         username: user.name,
                         phone: user.number
                     });
                 })
+            } else {
+                res.redirect('/otpverification')
+                console.log('invalid otp');
             }
         } catch (error) {
-            res.redirect("/signup")
+            console.log(error);
+            res.redirect('/404error')
         }
-
     },
-
     getlogin: (req, res) => {
         res.render("user/login")
     },
@@ -125,13 +150,9 @@ module.exports = {
                                 if (user.name == ele.name) {
                                     if (ele.isPresent == trues) {
                                         streak += 1
-                                        // console.log(streak);
-                                        // console.log("its");
-                                        // console.log(ele.isPresent);
                                     } else {
                                         streak *= 0
-                                        // console.log(streak);
-                                        // console.log(ele.isPresent,"not");
+                                        
                                     }
                                 }
                             });
@@ -160,6 +181,56 @@ module.exports = {
         // }
     },
 
+    forgotpassword:(req,res)=>{
+        res.render("user/forgotpassword")
+    },
+    postforgotpassword:async (req,res)=>{
+       const email = req.body.email
+      const reaset = await userschema.findOne({email:email})
+      if(reaset){
+        var val = Math.floor(1000 + Math.random() * 9000);
+        req.body.id = reaset.id
+        req.body.token = val
+        req.session.forgot = req.body
+        mailTransporter.sendMail({
+            to:email,
+            from:process.env.EMAIL,
+            subject:'Reset Password',
+            html:`<h4>This is your reset password OTP : <h2>${val}</h2></h4>`
+        })
+        const id = reaset.id
+        console.log(reaset);
+        res.render("user/passwordotp",{id})
+      }else{
+        res.redirect("/forgotpassword")
+      }
+    },
+    passwordotp:(req,res)=>{
+        const { digit1, digit2, digit3, digit4 } = req.body
+        const otp = digit1 + digit2 + digit3 + digit4
+        const { token } = req.session.forgot;
+        console.log(token,otp);
+        if(token == otp) {
+            res.render("user/setpassword")
+        }else{
+            res.redirect("/passwordotp")
+        }
+
+    },
+    setpassword:async (req,res)=>{
+        const {id , token} = req.session.forgot
+        console.log(id);
+        const password = req.body.password
+        const salt = await bcrypt.genSalt(10)
+        const hashedpassword = await bcrypt.hash(password,salt)
+       await userschema.findByIdAndUpdate(id,{
+            password:hashedpassword
+        }).then(user=>{
+            console.log(user,"update your password");
+            res.redirect("/login")
+        })
+
+    },
 
     getuserprofile: (req, res) => {
         let id = req.params.id
@@ -263,6 +334,13 @@ module.exports = {
                     payid: paymentid
                 }).then(id => {
                     console.log(id);
+                    const email = id.email
+                    mailTransporter.sendMail({
+                        to:email,
+                        from:process.env.EMAIL,
+                        subject:'Payment Successful',
+                        html:`<h4> Thanks For Pay The Money </h4> : <h2>${amount}</h2>`
+                    })
                 })
                 res.redirect('/home');
             })
@@ -275,7 +353,7 @@ module.exports = {
 
     Attendance: async (req, res) => {
         const username = req.params.name
-        const attendance = await Attendance.find().sort({date:-1})
+        const attendance = await Attendance.find().sort({ date: -1 })
         //console.log(attendance);
         var arr = []
         const trues = "true"
@@ -284,9 +362,9 @@ module.exports = {
                 const na = els.name
                 if (els.name === username) {
                     if (els.isPresent == trues) {
-                       var present =  els.isPresent.replace("true","present")
-                    }else{
-                        var absent =  els.isPresent.replace("false","Absent")
+                        var present = els.isPresent.replace("true", "present")
+                    } else {
+                        var absent = els.isPresent.replace("false", "Absent")
                     }
                     var obj = {
                         present: present || absent,
@@ -297,7 +375,7 @@ module.exports = {
                 }
             });
         })
-         console.log(arr);
+        console.log(arr);
         res.render("user/attendance", { arr });
     },
 
