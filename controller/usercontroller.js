@@ -4,6 +4,7 @@ const equipmentschema = require("../Model/equipment")
 const { workout } = require("../Model/workout")
 const payment = require("../Model/payment")
 const Attendance = require("../Model/attendances")
+const {recipes}= require("../Model/recipe")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
 const nodemailer = require("nodemailer")
@@ -12,6 +13,7 @@ const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const Payment = require("../Model/payment")
 const attendances = require("../Model/attendances")
+const { log } = require("console")
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -36,7 +38,37 @@ module.exports = {
         res.render("user/otpverification")
     },
 
+    equipment:async (req,res)=>{
+        var equipment = await equipmentschema.find()
+        res.render("user/equipments",{equipment})
+    },
+
+    recipe:(req,res)=>{
+        res.render("user/recipe")
+    },
+
+    addrecipe:async (req,res)=>{
+        const recipe = await recipes.find()
+        console.log(recipe);
+        res.render("user/recipeadd",{recipe})
+    },
+
+    postaddrecipe:(req,res)=>{
+        const { iteam , description }=req.body
+        const photo = req.file.filename
+       const recipe = new recipe ({
+        iteam : iteam,
+        description : description,
+        photo : photo
+       })
+       recipe.save().then(recipe=>{
+        console.log(recipe);
+       })
+       res.redirect("/recipe")
+    },
+
     postsignup: async (req,res) => {
+    
         const { name, email, password, confirmPass, number } = req.body;
         if (!name || !email || !password || !confirmPass || !number) {
             return res.status(422).json({ error: 'plz fill the property' });
@@ -71,7 +103,7 @@ module.exports = {
             res.redirect('/404error')
         }
     },
-
+          
     otpverificatons: async (req, res) => {
         try {
             const { digit1, digit2, digit3, digit4 } = req.body
@@ -95,14 +127,20 @@ module.exports = {
             }
         } catch (error) {
             console.log(error);
-            res.redirect('/404error')
+            res.redirect('/error')
         }
     },
+
+    error:(req,res)=>{
+        res.render("user/error")
+    },
+
     getlogin: (req, res) => {
         res.render("user/login")
     },
+    
     postlogin: async (req, res) => {
-        // try {
+        try {
         const payments = await Payment.find()
         payments.forEach(el => {
             var id = el._id
@@ -117,7 +155,7 @@ module.exports = {
             Payment.findByIdAndUpdate(id, {
                 pendingday: day
             }).then(days => {
-                //console.log(days);
+                //console.log(days)
             })
         })
         const user = await userschema.findOne({ email: req.body.email })
@@ -139,7 +177,6 @@ module.exports = {
                     if (pendingday > 0) {
                         req.session.user = data
                         var payment = await Payment.findById(id)
-                        var equipment = await equipmentschema.find()
                         var admindata = await admins.find()
                         const attendance = await attendances.find()
                         const trues = "true"
@@ -158,7 +195,7 @@ module.exports = {
                             });
                         });
 
-                        res.render("user/home", { equipment, admindata, user, payment, streak })
+                        res.render("user/home", { admindata, user, payment, streak })
                     } else {
                         res.render('user/payments', { username, user_id, phone })
                         console.log("please pay");
@@ -176,9 +213,9 @@ module.exports = {
             res.redirect("/login")
             console.log("email worng");
         }
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        } catch (error) {
+            res.redirect("/error")
+        }
     },
 
     forgotpassword:(req,res)=>{
@@ -187,6 +224,8 @@ module.exports = {
     postforgotpassword:async (req,res)=>{
        const email = req.body.email
       const reaset = await userschema.findOne({email:email})
+      try {
+       
       if(reaset){
         var val = Math.floor(1000 + Math.random() * 9000);
         req.body.id = reaset.id
@@ -198,37 +237,67 @@ module.exports = {
             subject:'Reset Password',
             html:`<h4>This is your reset password OTP : <h2>${val}</h2></h4>`
         })
-        const id = reaset.id
-        console.log(reaset);
-        res.render("user/passwordotp",{id})
+        console.log(reaset,val);
+        res.redirect("/passwordotp")
       }else{
         res.redirect("/forgotpassword")
       }
+       
+    } catch (error) {
+        res.redirect("/error")
+    }
     },
     passwordotp:(req,res)=>{
+        res.render("user/passwordotp")
+    },
+
+    passwordsotp:(req,res)=>{
+        try {
+            
         const { digit1, digit2, digit3, digit4 } = req.body
         const otp = digit1 + digit2 + digit3 + digit4
         const { token } = req.session.forgot;
         console.log(token,otp);
         if(token == otp) {
-            res.render("user/setpassword")
+            res.redirect("/setpassword")
         }else{
             res.redirect("/passwordotp")
         }
+    } catch (error) {
+          res.redirect("/error")  
+    }
 
     },
-    setpassword:async (req,res)=>{
-        const {id , token} = req.session.forgot
-        console.log(id);
-        const password = req.body.password
-        const salt = await bcrypt.genSalt(10)
-        const hashedpassword = await bcrypt.hash(password,salt)
-       await userschema.findByIdAndUpdate(id,{
-            password:hashedpassword
-        }).then(user=>{
-            console.log(user,"update your password");
-            res.redirect("/login")
-        })
+
+    setpassword:(req,res)=>{
+        res.render("user/setpassword")
+    },
+
+    setpasswords:async (req,res)=>{
+        try {
+            const {id , token} = req.session.forgot
+                console.log(id);
+            const { password,confirm }=req.body
+
+            if(password == confirm){
+
+                const salt = await bcrypt.genSalt(10)
+                const hashedpassword = await bcrypt.hash(password,salt)
+               await userschema.findByIdAndUpdate(id,{
+                    password:hashedpassword
+                }).then(user=>{
+                    console.log(user,"update your password");
+                    res.redirect("/login")
+                })
+
+            }else{
+                res.redirect("/setpassword")
+            }
+       
+    } catch (error) {
+        console.log(error);
+           res.redirect("/error") 
+    }
 
     },
 
@@ -248,6 +317,8 @@ module.exports = {
     },
 
     postupdate: (req, res) => {
+        try {
+       
         let userid = req.params.id
         userschema.findByIdAndUpdate(userid, {
             photo: req.file.filename,
@@ -260,6 +331,10 @@ module.exports = {
             console.log(user)
             res.redirect("/home")
         })
+             
+    } catch (error) {
+           res.redirect("/error") 
+    }
     },
 
     getworkout: (req, res, next) => {
@@ -270,6 +345,9 @@ module.exports = {
     },
 
     paypost: (req, res) => {
+        
+        try {
+       
         var instance = new Razorpay({ key_id: process.env.RAZORPAY_API_KEY, key_secret: process.env.RAZORPAY_API_SECRET })
         const amount = req.body.amount
         const username = req.body.username
@@ -298,10 +376,17 @@ module.exports = {
                 });
             }
         })
+             
+    } catch (error) {
+          res.redirect("/error")  
+    }
     },
 
 
     verifypayment: async (req, res) => {
+
+        try {
+       
         const secret = process.env.RAZORPAY_API_SECRET; // Your Razorpay webhook secret
         const body = req.body.razorpay_order_id + '|' + req.body.razorpay_payment_id;
         const signature = req.body.razorpay_signature;
@@ -349,14 +434,20 @@ module.exports = {
             // Payment verification failed
             res.sent("payment failed")
         }
+             
+    } catch (error) {
+          res.redirect("/error")  
+    }
     },
 
     Attendance: async (req, res) => {
         const username = req.params.name
         const attendance = await Attendance.find().sort({ date: -1 })
-        //console.log(attendance);
         var arr = []
         const trues = "true"
+
+        try {
+            
         attendance.forEach(el => {
             el.status.forEach(els => {
                 const na = els.name
@@ -377,15 +468,18 @@ module.exports = {
         })
         console.log(arr);
         res.render("user/attendance", { arr });
+    } catch (error) {
+        console.log(error);
+            res.redirect("/error")
+    }
     },
 
 
     home: async (req, res) => {
         if (req.session.user) {
             var payment = await Payment.find()
-            var equipment = await equipmentschema.find()
             var admindata = await admins.find()
-            res.render("user/home", { equipment, admindata })
+            res.render("user/home", { admindata })
         } else {
             res.redirect("/login")
         }

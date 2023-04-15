@@ -20,9 +20,17 @@ const {
      otpverificatons,
      forgotpassword,
      postforgotpassword,
-     setpassword,
-     passwordotp,
+     setpasswords,
+     passwordsotp,
      otpverification,
+     error,
+     passwordotp,
+     setpassword,
+     equipment,
+     recipe,
+     addrecipe,
+     postaddrecipe
+
 }=require("../controller/usercontroller")
 
 
@@ -43,8 +51,15 @@ router.get("/attendance/:name",Attendance)
 router.post("/verificaton",otpverificatons)
 router.get("/forgotpassword",forgotpassword)
 router.post("/forgotpassword",postforgotpassword)
-router.post("/setpassword",setpassword)
-router.post("/passwordotp",passwordotp)
+router.post("/setpassword",setpasswords)
+router.post("/passwordotp",passwordsotp)
 router.get("/otpverification",otpverification)
+router.get("/passwordotp",passwordotp)
+router.get("/setpassword",setpassword)
+router.get("/error",error)
+router.get("/equipment",equipment)
+router.get("/recipe",recipe)
+router.get("/addrecipe",addrecipe)
+router.post("/postaddrecipe",postaddrecipe)
 
 module.exports=router

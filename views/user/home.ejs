@@ -14,7 +14,7 @@
     <!--//navigation section -->
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="hedder-up">
-        <h2><a class="navbar-brand" href="index.html" data-aos="fade-right" ><a href="/profile/<%=user._id%>" class="fas fa-user fa-lg me-3 fa-fw"></a> Gym-Plus</a></h2>
+        <h2><a href="#"><img src="/images/body-builder-7320519_960_720.png" style="width: 30px;height: 30px;color: #000;" alt=""> My-Gym</a></h2>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,10 +32,10 @@
             <% console.log(user.name); %>
           </li>
           <li class="nav-item">
-            <a href="#service" class="nav-link scroll" style="color: rgb(255, 255, 255);">service</a>
+            <a href="/equipment" class="nav-link scroll" style="color: rgb(255, 255, 255);">Equipments</a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="nav-link scroll" style="color: rgb(255, 255, 255);">About</a>
+            <a href="/recipe" class="nav-link scroll" style="color: rgb(255, 255, 255);">Recipes</a>
           </li>
         </ul>
          <a class="btn btn-primary" href="/logout" style="color: rgb(255, 255, 255); ">Logout</a>
@@ -49,7 +49,6 @@
     <!--banner -->
     <div class="container">
       <div class="banner-slide-img" data-aos="fade-up">
-        <!-- Slideshow 4 -->
         <div class="slider">
           <div class="callbacks_container">
             <ul class="rslides" id="slider4">
@@ -61,287 +60,61 @@
                     <h4>Fitness is Good</h4>
                     <h5> Grow Your Strength</h5>
                     <div class="mt-3 outs_more-buttn">
-                      <!-- <a href="#" data-toggle="modal" data-target="#exampleModalLive"></a> -->
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="slider-img">
-                  <div class="slider-info ">
-                    <h3>Payment Day <%=payment.day %></h3>
-                    <h4>Fitness And Stronger </h4>
-                    <h5>Real Athletes</h5>
-                    <div class="mt-3 outs_more-buttn">
-                      <!-- <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a> -->
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="slider-img">
-                  <div class="slider-info">
-                    <h3> Payment Amount <%=payment.amount %></h3>
-                    <h4>Fitness And Health</h4>
-                    <h5>With Double Power</h5>
-                    <div class="mt-3 outs_more-buttn">
-                      <!-- <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a> -->
                     </div>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
-          <!-- This is here just to demonstrate the callbacks -->
         </div>
-        <!-- //Slideshow 4 -->
-        <div class="clearfix"></div>
       </div>
     </div>
   </div>
   <!-- //banner -->
   <!-- About-one --> 
-
-  <section class="about " id="about" style="background-color: aliceblue;">
-    <div class="container">
-      <div class="row effcet-about">
-        <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
-          <h2 class="mb-lg-5 mb-lg-4 mb-3">Fitness And Health</h2>
-          <div class="agile-about-para">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-          </div>
-          <div class="mt-lg-3 mt-2 agile-about-para">
-            <p>incididunt ut labore et Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-          </div>
-        </div>
-        <div class="col-lg-5 about-States-list" data-aos="fade-left">
-          <img src="images/ab1.png" alt="" class="img-fluid">
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- //About-one -->
-  <!--service-->	
-  <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service" >
-    <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" >Our Services</h3>
-      <div class="row top-service pb-lg-4 pb-md-3 pb-2">
-        <div class="col-lg-8 col-md-8 service-agile-info-left"  data-aos="fade-right"
-          data-aos-offset="250"
-          data-aos-easing="ease-in-sine">
-          <h4 class="mb-lg-4 mb-3"> Body Builder Classes</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet</p>
-          <div class="mt-3 outs_more-buttn">
-            <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 ser-icon text-center">
-          <div class="service-icon-w3layouts">
-            <span class="far fa-thumbs-up"></span>
-          </div>
-        </div>
-      </div>
-      <div class=" my-lg-5 my-md-4 my-3 row mid-service">
-        <div class="col-lg-4 col-md-4 ser-icon text-center">
-          <div class="service-icon-w3layouts move-right">
-            <span class="fab fa-apple"></span>
-          </div>
-        </div>
-        <div class="col-lg-8 col-md-8 service-agile-info-left" data-aos="fade-left"
-          data-aos-offset="200"
-          data-aos-easing="ease-in-sine">
-          <h4 class="mb-lg-4 mb-3">Weight Loss Classes</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet</p>
-          <div class="mt-3 outs_more-buttn">
-            <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a>
-          </div>
-        </div>
-      </div>
-      <div class="row bottom-service pt-lg-4 pt-md-3 pt-2" >
-        <div class="col-lg-8 col-md-8 service-agile-info-left" data-aos="fade-right"
-          data-aos-offset="150"
-          data-aos-easing="ease-in-sine">
-          <h4 class="mb-lg-4 mb-3">Indoor Cycling Classes</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet,</p>
-          <div class="mt-3 outs_more-buttn">
-            <a href="#" data-toggle="modal" data-target="#exampleModalLive">Read More</a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 ser-icon text-center">
-          <div class="service-icon-w3layouts">
-            <span class="fas fa-bicycle"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--//service-->
-  <!--clients-->
-  <!-- <section class="client py-lg-4 py-md-3 py-sm-3 py-3" id="client">
-    <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-      <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">GYM Equipments</h3>
-      <%# console.log(equipment)%>
-      <div class="flexslider">
-        <%#equipment.forEach(el => {%>
-        <ul class="slides">
-          <li >
-            <div class="row client-slider-slide" style="justify-content: center;">
-              <div class="col-lg-6 col-md-6 w3layouts-txt-says">
-                <div class="clients-color-agile text-center">
-                  <div class="card" style="width: 18rem; margin-left: 30px;">
-                    <img class="card-img-top" src="/<%#=el.photo %>" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title"><%#=el.name %></h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                  </div>
-                </div>
+  <div>
+    <style>
+      .wrapper{display: flex;justify-content: space-evenly;align-items: center;height: 100vh;background:#f5efef}.profile{position: relative;width: 300px;height: 350px;background:url('https://i.imgur.com/sAtgYjl.jpg');background-size: cover;cursor: pointer;border: 12px;border-top-right-radius: 35px !important;border-radius: 6px}.overlay{width: 100%;height: 100%;background:rgba(0,0,0,0.8);border-radius: 12px;cursor: pointer;opacity: 0;transition: all 1s;border-top-right-radius: 35px !important;border-radius: 6px}.profile:hover .overlay{opacity: 1}.social-icons{display: flex;list-style: none;bottom: 10px;position: absolute;text-align: center;justify-content: center;left: 22px}.social-icons li{width: 25px;height: 25px;border: 1px solid #eee;padding: 20px;margin-right: 10px;display: flex;justify-content: center;align-items: center;color: #fff;border-radius: 5px;transition: all 1s}.social-icons li:hover{background:#fff;color: #000}.overlay .about{position: relative;justify-content: center;align-items: center;display: flex;top:40%;color: #fff;flex: column}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="wrapper">
+      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" style="color: black;">Profile</h3>
+      <div class="profile" style="background-image: url('/<%=user.photo %>');">
+          <div class="overlay">
+              <div class="about d-flex flex-column">
+                  <h4><%=user.name%></h4> <span><%=user.username %></span>
+                  <span><%=user.email %></span>
+                  <span><%=user.number%></span>
+                  <span><%=user.weight%></span>
               </div>
-            </div>
-          </li>
-        </ul>
-        <%#})%>
-      </div>
-    </div>
-  </section> -->
-  <!--//clients-->
-  <div class="container-fluid pt-4 px-4 pb-5" style="background-color: white;">
-    <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" style="color: black;">Equipment</h3>
-    <div class="row g-4 ">
-        <% equipment.forEach(el=> { %>
-            <div class="col-lg-4 col-md-6" style="display: flex; justify-content: center; ">
-                <div class="card" style="width: 18rem; border: 3px solid black;">
-                    <img class="card-img-top" src="/<%= el.photo %>" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: black;">
-                            <%= el.name %>
-                        </h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the
-                            bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <% }) %>
-    </div>
-</div>
-
-  
-  <!-- team -->
-  <section class="team  py-lg-4 py-md-3 py-sm-3 py-3" id="team" >
-    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
-      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" >Our Traines</h3>
-      <div class="row text-center "style="justify-content: center;">
-        
-        <div class="col-lg-3 col-md-6 col-sm-6 news-img" data-aos="fade-up"
-          data-aos-duration="3000">
-          <%admindata.forEach(el => { %>
-          <div class="team-agile-group">
-            <img src="<%=el.photo %>" alt="" class="image-fluid">
-            <h4 class="mt-3 mb-2"><%=el.name %>
-            </h4>
-            <span class="wls-client-title"><%=el.email %></span>
-            <p class="mt-3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-              Lorem ipsum 
-            </p>
-            <div class="icons-footer mt-lg-4 mt-md-3 mt-3">
-              <ul>
-                <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                <li><a href="#"><span class="fas fa-envelope"></span></a></li>
-                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <ul class="social-icons">
+                  <li><i class="fa fa-facebook"></i></li>
+                  <li><i class="fa fa-linkedin"></i></li>
+                  <li><i class="fa fa-instagram"></i></li>
+                 <li><a href="/update/<%=user._id%>"><i class="far fa-edit"></i></a></li> 
               </ul>
-            </div>
           </div>
-          <% }); %>
-        </div>
-      
       </div>
-    </div>
-  </section>
-  <!-- //gallery -->
-  <div class="address_mail_footer_grids" data-aos="fade-up">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.9503398796587!2d-73.9940307!3d40.719109700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a27e2f24131%3A0x64ffc98d24069f02!2sCANADA!5e0!3m2!1sen!2sin!4v1441710758555"></iframe>
-  </div>
-  <!--contact -->
-  <Section class="contact py-lg-4 py-md-3 py-sm-3 py-3" id="contact" style="background-color: aliceblue;">
-    <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
-      <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Contact Us</h3>
-      <div class="mb-lg-5 mb-md-4 mb-3 row contact-right ">
-        <div class="col-lg-4 col-md-5 footer_grid_left text-center" data-aos="fade-right"
-          data-aos-offset="100"
-          data-aos-easing="ease-in-sine">
-          <div class="contact_footer_grid_left text-center mb-3">
-            <span class="fas fa-map-marker-alt"></span>
-          </div>
-          <p> Broome St,10002,Canada<br>New York City 90210.</p>
-        </div>
-        <div class="col-lg-4 col-md-3 footer_grid_left text-center"  data-aos="fade-right"
-          data-aos-offset="110"
-          data-aos-easing="ease-in-sine">
-          <div class="contact_footer_grid_left text-center mb-3">
-            <span class="fas fa-phone-volume"></span>
-          </div>
-          <p>+(000) 123 4565 32<br>+(010) 123 455 354</p>
-        </div>
-        <div class="col-lg-4 col-md-4 footer_grid_left text-center" data-aos="fade-right"
-          data-aos-offset="120"
-          data-aos-easing="ease-in-sine">
-          <div class="contact_footer_grid_left text-center mb-3">
-            <span class="fas fa-at"></span>
-          </div>
-          <p><a href="mailto:info@example.com">info@example1.com</a> 
-            <br><a href="mailto:info@example.com">info@example2.com</a>
-          </p>
-        </div>
-      </div>
-      <div class=" contact-form aos-init aos-animate" data-aos="fade-left"
-        data-aos-offset="100"
-        data-aos-easing="ease-in-sine">
-        <form action="#" method="post">
-          <div class="row text-center contact-wls-detail">
-            <div class="col-md-4 form-group contact-forms">
-              <input type="text" class="form-control" placeholder="Your Name" required="">
+      <h3 class="title text-center clr mb-lg-5 mb-md-4 mb-sm-4 mb-3" style="color: black;">Admin</h3>
+      <%admindata.forEach(el => { %>
+      <div class="profile" style="background-image: url('/<%=el.photo %>'); ">
+        <div class="overlay">
+            <div class="about d-flex flex-column">
+                <h4><%=el.name%></h4> 
+                <span><%=el.email %></span>
+                <span><%=el.number%></span>
             </div>
-            <div class="col-md-4 form-group contact-forms">
-              <input type="email" class="form-control" placeholder="Your Email" required="">
-            </div>
-            <div class="col-md-4 form-group contact-forms">
-              <input type="text" name="Phone" class="form-control" placeholder="Phone " required="">
-            </div>
-          </div>
-          <div class="form-group contact-forms">
-            <textarea class="form-control" rows="3" placeholder="Your Message" required=""></textarea>
-          </div>
-          <button type="submit" class="btn sent-butnn">Send</button>
-        </form>
-      </div>
-    </div>
-  </section>
-  <!--//contact -->
-  <!-- footer -->
- 
-  <!-- //footer -->
-  <!--model-->
-  <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLiveLabel">Gym-Plus</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <img src="images/b1.jpg" alt="" class="img-fluid">
-          <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-            eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellu
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary"> <a href="login">login</a></button> -->
-        </div>
-      </div>
-    </div>
-  </div>
+            <ul class="social-icons">
+                <li><i class="fa fa-facebook"></i></li>
+                <li><i class="fa fa-linkedin"></i></li>
+                <li><i class="fa fa-instagram"></i></li>
+                <li><i class="fa fa-twitter"></i></li>
 
-  
+            </ul>
+        </div>
+    </div>
+    <% }); %>
+  </div>
+    </div>
+
+  <!--//clients-->
