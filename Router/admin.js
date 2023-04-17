@@ -20,7 +20,14 @@ const {
    postattendance,
    attendancedetails,
    userdetails,
-   profile
+   profile,
+   error,
+   forgotpassword,
+   postforgotpassword,
+   passwordotp,
+   otpverificaton,
+   setpassword,
+   postsetpassword
 }=require("../controller/admincontroller")
 
 //Routing
@@ -45,5 +52,12 @@ router.post("/attendance",postattendance)
 router.get("/attendancedetails",attendancedetails)
 router.get("/userdetails/:id",userdetails)
 router.get("/profile",profile)
+router.get("/error",error)
+router.get("/forgotpassword",forgotpassword)
+router.post("/forgotpassword",postforgotpassword)
+router.get("/passwordotp",passwordotp)
+router.post("/verificaton",otpverificaton)
+router.get('/setpassword',setpassword)
+router.post("/setpassword",postsetpassword)
 
 module.exports=router

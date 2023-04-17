@@ -22,6 +22,9 @@ const adminschema = new mongoose.Schema({
     },
     photo:{
         type:String
+    },
+    confirm:{
+        type:String
     }
 })
 

@@ -11,5 +11,5 @@ const recipeschem = new mongoose.Schema({
     }
 })
 
-var recipe =  mongoose.model("recipe", recipeschem)
-module.exports = { recipe }
+var recipes =  mongoose.model("recipe", recipeschem)
+module.exports = { recipes }

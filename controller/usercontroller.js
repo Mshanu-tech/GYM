@@ -43,30 +43,6 @@ module.exports = {
         res.render("user/equipments",{equipment})
     },
 
-    recipe:(req,res)=>{
-        res.render("user/recipe")
-    },
-
-    addrecipe:async (req,res)=>{
-        const recipe = await recipes.find()
-        console.log(recipe);
-        res.render("user/recipeadd",{recipe})
-    },
-
-    postaddrecipe:(req,res)=>{
-        const { iteam , description }=req.body
-        const photo = req.file.filename
-       const recipe = new recipe ({
-        iteam : iteam,
-        description : description,
-        photo : photo
-       })
-       recipe.save().then(recipe=>{
-        console.log(recipe);
-       })
-       res.redirect("/recipe")
-    },
-
     postsignup: async (req,res) => {
     
         const { name, email, password, confirmPass, number } = req.body;

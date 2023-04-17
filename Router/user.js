@@ -26,10 +26,10 @@ const {
      error,
      passwordotp,
      setpassword,
-     equipment,
-     recipe,
-     addrecipe,
-     postaddrecipe
+     equipment
+    //  recipe,
+    //  addrecipe,
+    //  postaddrecipe
 
 }=require("../controller/usercontroller")
 
@@ -58,8 +58,8 @@ router.get("/passwordotp",passwordotp)
 router.get("/setpassword",setpassword)
 router.get("/error",error)
 router.get("/equipment",equipment)
-router.get("/recipe",recipe)
-router.get("/addrecipe",addrecipe)
-router.post("/postaddrecipe",postaddrecipe)
+// router.get("/recipe",recipe)
+// router.get("/addrecipe",addrecipe)
+// router.post("/postaddrecipe",postaddrecipe)
 
 module.exports=router

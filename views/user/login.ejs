@@ -4,7 +4,7 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem; overflow: hidden;">
             <div class="card-body p-5 text-center">
-  <form action="/home" method="post">
+  <form action="/home" method="post" onsubmit="return validation()">
               <div class="mb-md-5 mt-md-4 pb-5">
   
                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
@@ -16,7 +16,7 @@
                 </div>
   
                 <div class="form-outline form-white mb-4">
-                  <input id="password" name="password" type="password" id="typePasswordX" class="form-control form-control-lg" required style="background-color: white;" >
+                  <input id="password" name="password" type="password" class="form-control form-control-lg" required style="background-color: white;" >
                   <label class="form-label" for="typePasswordX">Password</label>
                 </div>
   
@@ -45,4 +45,39 @@
       </div>
     </div>
   </section>
+
+  <script>
+    function validation() {
+  
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+    
+      var error = "";
+      if (email == "") {
+        error += "Please enter your email.\n";
+  
+      } else {
+        var gmail = /@gmail\.com$/;
+        if (!gmail.test(email)) {
+          error += "Please enter your validate email.\n";
+        }
+      }
+      
+      if (password == "") {
+        error += "Please enter a password.\n";
+      } else {
+        if (password.length < 4) {
+          error += "Password must be at least 8 characters long.\n";
+        }
+      }
+  
+      if (error == "") {
+        return true;
+      } else {
+        alert(error);
+        return false;
+      }
+    }
+  
+  </script>
   
