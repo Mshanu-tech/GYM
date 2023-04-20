@@ -27,7 +27,9 @@ const {
    passwordotp,
    otpverificaton,
    setpassword,
-   postsetpassword
+   postsetpassword,
+   profileedit,
+   updateprofile
 }=require("../controller/admincontroller")
 
 //Routing
@@ -59,5 +61,7 @@ router.get("/passwordotp",passwordotp)
 router.post("/verificaton",otpverificaton)
 router.get('/setpassword',setpassword)
 router.post("/setpassword",postsetpassword)
+router.get("/profileedit/:id",profileedit)
+router.post("/update/:id",updateprofile)
 
 module.exports=router

@@ -389,5 +389,25 @@ module.exports = {
     } catch (error) {
            res.redirect("/admin/error") 
     }
+},
+
+profileedit:(req,res)=>{
+   const id = req.params.id
+   admins.findById(id).then(admin=>{
+    console.log(admin,"hai")
+    res.render("admin/profileupdate",{admin})
+   })
+},
+
+updateprofile:(req,res)=>{
+    const id = req.params.id
+    admins.findByIdAndUpdate(id,{
+        photo: req.file.filename,
+        name: req.body.name,
+         email: req.body.email,
+        number: req.body.number,
+        weight: req.body.weight,
+            username: req.body.username
+    })
 }
 }

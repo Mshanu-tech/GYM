@@ -233,16 +233,17 @@ module.exports = {
         const { digit1, digit2, digit3, digit4 } = req.body
         const otp = digit1 + digit2 + digit3 + digit4
         const { token } = req.session.forgot;
-        console.log(token,otp);
+        console.log("token",token,"otp",otp);
         if(token == otp) {
             res.redirect("/setpassword")
         }else{
             res.redirect("/passwordotp")
         }
     } catch (error) {
+        console.log(error);
           res.redirect("/error")  
     }
-
+    
     },
 
     setpassword:(req,res)=>{
