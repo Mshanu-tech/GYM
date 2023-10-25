@@ -13,7 +13,6 @@ const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const Payment = require("../Model/payment")
 const attendances = require("../Model/attendances")
-const { log } = require("console")
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -49,10 +48,11 @@ module.exports = {
         if (!name || !email || !password || !confirmPass || !number) {
             return res.status(422).json({ error: 'plz fill the property' });
         }
-
+        
         try {
             const userExist = await userschema.findOne({ email: email });
-            if (!userExist) {
+            // console.log(userschema.findOne({email: email}))
+            if (userExist) {
                 return res.status(422).json({ error: 'Email already exist' })
             } else if (password != confirmPass) {
                 res.redirect('/signup')
@@ -62,7 +62,7 @@ module.exports = {
                 var val = Math.floor(1000 + Math.random() * 9000);
                 req.body.token = val
                 req.session.signup = req.body
-
+                // console.log(process.env.EMAIL);
                 mailTransporter.sendMail({
                     to: email,
                     from: process.env.EMAIL,
@@ -70,7 +70,6 @@ module.exports = {
                     html: `<h4>This your token for OTP Verfication </h4>:<h2>${val}</h2>`
                 })
                 res.redirect('/otpverification')
-
             }
             console.log(req.body);
 

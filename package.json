@@ -1,7 +1,6 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
@@ -29,5 +28,6 @@
     "path": "^0.12.7",
     "plotly": "^1.0.6",
     "razorpay": "^2.8.6"
-  }
+  },
+  "description": ""
 }
