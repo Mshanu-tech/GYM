@@ -9,7 +9,6 @@ const multer = require('multer');
 const path = require("path")
 const bodyparse = require("body-parser")
 
-
 //Database connection
 mongoose.set('strictQuery', true)
 const client = mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });

@@ -18,10 +18,13 @@ const attendances = require("../Model/attendances")
 let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'mygym72@gmail.com',
-        pass: 'jtjlzhbwscwyxszq'
+        user: process.env.EMAIL,
+        pass: process.env.PASS
     }
 })
+
+// console.log(process.env.PASS);
+console.log(mailTransporter.sendMail);
 
 module.exports = {
 
@@ -62,7 +65,7 @@ module.exports = {
                 var val = Math.floor(1000 + Math.random() * 9000);
                 req.body.token = val
                 req.session.signup = req.body
-                // console.log(process.env.EMAIL);
+
                 mailTransporter.sendMail({
                     to: email,
                     from: process.env.EMAIL,
@@ -396,12 +399,12 @@ module.exports = {
                 }).then(id => {
                     console.log(id);
                     const email = id.email
-                    mailTransporter.sendMail({
-                        to:email,
-                        from:process.env.EMAIL,
-                        subject:'Payment Successful',
-                        html:`<h4> Thanks For Pay The Money </h4> : <h2>${amount}</h2>`
-                    })
+                    // mailTransporter.sendMail({
+                    //     to:email,
+                    //     from:process.env.EMAIL,
+                    //     subject:'Payment Successful',
+                    //     html:`<h4> Thanks For Pay The Money </h4> : <h2>${amount}</h2>`
+                    // })
                 })
                 res.redirect('/home');
             })
